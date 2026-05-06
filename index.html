@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paweł Jankowicz — IT · FinTech · AI · Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05050a;--bg-2:#0a0a14;--card:#0f0f1c;--card-2:#13131f;
+  --line:rgba(140,120,255,.14);--line-2:rgba(168,140,255,.45);
+  --text:#eef0fb;--muted:#8a8aa6;--muted-2:#aeaecb;
+  --violet:#a784ff;--violet-2:#7a5cff;--cyan:#22d3ee;
+  --green:#39ff8a;--pink:#ff5cb8;--yellow:#e7ff52;
+  --glow:0 0 80px rgba(122,92,255,.28);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;scroll-behavior:smooth;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(1100px 600px at 12% -5%, rgba(122,92,255,.20), transparent 55%),
+    radial-gradient(900px 500px at 90% 5%, rgba(34,211,238,.12), transparent 60%),
+    radial-gradient(700px 400px at 50% 100%, rgba(122,92,255,.16), transparent 60%),
+    var(--bg);
+  min-height:100vh;
+}
+::selection{background:rgba(122,92,255,.4);color:#fff}
+a{color:inherit;text-decoration:none}
+.mono{font-family:'JetBrains Mono',monospace}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(168,140,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(168,140,255,.04) 1px, transparent 1px);
+  background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 80%);
+}
+main, header, nav, footer, section{position:relative;z-index:1}
+
+nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;
+  backdrop-filter:blur(16px);background:rgba(11,11,22,.55);
+  border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 22px;
+  display:flex;align-items:center;gap:22px;box-shadow:0 14px 40px rgba(0,0,0,.4);
+}
+nav .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:.4px;font-size:15px;color:#fff}
+nav .brand span{color:var(--violet)}
+nav .links{display:flex;gap:18px;font-size:13.5px;color:var(--muted)}
+nav .links a{transition:color .2s;font-weight:500}
+nav .links a:hover{color:var(--text)}
+nav .lang{display:flex;gap:2px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(0,0,0,.25)}
+nav .lang button{
+  background:transparent;border:none;color:var(--muted);
+  font:600 11px 'JetBrains Mono';letter-spacing:.5px;padding:6px 9px;border-radius:999px;cursor:pointer;transition:all .2s;
+}
+nav .lang button:hover{color:var(--text)}
+nav .lang button.active{background:linear-gradient(135deg,var(--violet-2),var(--violet));color:#fff}
+
+header.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;width:100%}
+.tag{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;
+  border:1px solid var(--line);border-radius:999px;color:var(--muted-2);
+  font-size:13px;background:rgba(255,255,255,.02);margin-bottom:24px;font-family:'JetBrains Mono'
+}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+h1.hero-title{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(42px,6.4vw,82px);line-height:1.02;font-weight:700;letter-spacing:-.03em;margin-bottom:22px;
+}
+h1.hero-title .accent{
+  background:linear-gradient(120deg,#fff 25%,var(--violet) 60%,var(--cyan) 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .role-line{font-family:'JetBrains Mono';color:var(--cyan);font-size:15px;margin-bottom:14px;letter-spacing:1px;min-height:22px}
+.hero .role-line::before{content:"> ";opacity:.5}
+.hero .role-line .cursor{display:inline-block;width:8px;background:var(--cyan);margin-left:2px;animation:blink 1s infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.hero p.lede{color:var(--muted-2);font-size:17px;line-height:1.7;max-width:560px;margin-bottom:32px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;
+  font-weight:600;font-size:14px;cursor:pointer;border:1px solid var(--line);
+  background:rgba(255,255,255,.03);color:var(--text);transition:all .25s;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--line-2);background:rgba(168,140,255,.06)}
+.btn.primary{background:linear-gradient(135deg,var(--violet-2),var(--violet));border-color:transparent;color:#fff;box-shadow:0 14px 40px rgba(122,92,255,.4)}
+.btn.primary:hover{box-shadow:0 18px 60px rgba(122,92,255,.6);transform:translateY(-3px)}
+.btn.gh{background:rgba(255,255,255,.05);font-family:'JetBrains Mono';font-size:13px;padding:10px 18px}
+.btn.gh svg{width:18px;height:18px}
+
+.profile-card{
+  position:relative;justify-self:center;width:340px;height:560px;
+  border-radius:30px;overflow:hidden;
+  background:linear-gradient(180deg,#1a1a2e,#070713);
+  border:1px solid var(--line-2);box-shadow:var(--glow), 0 30px 80px rgba(0,0,0,.5);
+}
+.profile-card::before{
+  content:"";position:absolute;inset:-2px;border-radius:32px;
+  background:conic-gradient(from 90deg, var(--violet-2), var(--cyan), var(--violet), var(--violet-2));
+  filter:blur(22px);opacity:.5;z-index:-1;animation:spin 12s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.profile-card .top{padding:22px;display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2}
+.profile-card .top .name{font-weight:700;font-size:18px;font-family:'Space Grotesk'}
+.profile-card .top .role{font-size:11px;color:var(--violet);letter-spacing:1px;text-transform:uppercase;margin-top:2px;font-weight:600}
+.profile-card .top .qr{
+  width:46px;height:46px;border:1px solid var(--line-2);border-radius:8px;
+  display:block;cursor:pointer;background:#fff;padding:3px;
+  transition:all .25s;position:relative;
+}
+.profile-card .top .qr:hover{transform:scale(1.5) translate(-7px,7px);box-shadow:0 12px 30px rgba(0,0,0,.6);z-index:10}
+.profile-card .top .qr img{width:100%;height:100%;display:block;border-radius:4px}
+.profile-card .top .qr::after{
+  content:"GitHub";position:absolute;bottom:-18px;right:0;font-family:'JetBrains Mono';font-size:9px;
+  color:var(--cyan);letter-spacing:1px;text-transform:uppercase;opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.profile-card .top .qr:hover::after{opacity:1}
+.profile-card .photo{
+  position:relative;width:calc(100% - 44px);margin:0 auto;aspect-ratio:4/5;border-radius:20px;
+  background:radial-gradient(circle at 30% 25%, rgba(122,92,255,.55), transparent 55%),radial-gradient(circle at 70% 75%, rgba(34,211,238,.4), transparent 55%),linear-gradient(135deg,#1a1a30,#070713);
+  display:flex;align-items:flex-end;justify-content:center;overflow:hidden;border:1px solid var(--line);
+}
+.profile-card .photo img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;
+  filter:contrast(1.04) saturate(.92);
+}
+.profile-card .photo::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:80px;
+  background:linear-gradient(to top, rgba(7,7,19,.55), transparent);
+  pointer-events:none;z-index:1;
+}
+.profile-card .photo .initials{
+  font-family:'Space Grotesk';font-size:160px;font-weight:700;letter-spacing:-.05em;
+  background:linear-gradient(180deg,#fff,rgba(255,255,255,.1));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:-22px;line-height:1;
+}
+.profile-card .photo .badge{
+  position:absolute;top:14px;left:14px;font-family:'JetBrains Mono';font-size:10px;
+  background:rgba(0,0,0,.6);border:1px solid var(--line-2);padding:4px 10px;border-radius:999px;color:var(--cyan);z-index:2;
+}
+.profile-card .photo .scan{
+  position:absolute;left:0;right:0;height:60px;
+  background:linear-gradient(180deg,transparent,rgba(34,211,238,.18),transparent);
+  animation:scan 3s linear infinite;pointer-events:none;
+}
+@keyframes scan{0%{top:-60px}100%{top:100%}}
+.profile-card .footer{padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.profile-card .footer .handle{font-size:12px;color:var(--muted-2);font-family:'JetBrains Mono'}
+.profile-card .footer .handle .green{color:var(--green)}
+.profile-card .footer .ctc{font-size:12px;font-weight:600;background:rgba(255,255,255,.07);border:1px solid var(--line);padding:8px 14px;border-radius:999px;transition:all .2s}
+.profile-card .footer .ctc:hover{background:var(--violet-2);border-color:var(--violet-2)}
+
+.marquee{
+  margin-top:60px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:18px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+}
+.marquee .track{display:flex;gap:60px;animation:marq 30s linear infinite;width:max-content}
+.marquee .item{display:flex;align-items:center;gap:10px;color:var(--muted);font-family:'JetBrains Mono';font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.marquee .item svg{width:22px;height:22px;flex-shrink:0}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+section{padding:90px 0}
+.section-head{text-align:center;margin-bottom:55px}
+.section-head .kicker{
+  display:inline-flex;align-items:center;gap:8px;color:var(--violet);font-size:12px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;font-family:'JetBrains Mono';
+  padding:6px 14px;border:1px solid var(--line-2);border-radius:999px;background:rgba(122,92,255,.06);
+}
+.section-head h2{font-family:'Space Grotesk';font-size:clamp(34px,4.5vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.1}
+.section-head h2 .accent{color:var(--violet)}
+.section-head p{color:var(--muted-2);max-width:680px;margin:16px auto 0;font-size:16px;line-height:1.65}
+
+.about-box{
+  position:relative;padding:42px;border-radius:28px;border:1px solid var(--line-2);
+  background:linear-gradient(180deg,rgba(20,20,38,.7),rgba(12,12,22,.7));
+  box-shadow:var(--glow);overflow:hidden;
+}
+.about-box::after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle, rgba(122,92,255,.2), transparent 70%);top:-150px;right:-150px;pointer-events:none}
+.about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;align-items:center;position:relative;z-index:1}
+.about-grid h3{font-family:'Space Grotesk';font-size:28px;margin-bottom:16px;letter-spacing:-.01em;line-height:1.2}
+.about-grid p{color:var(--muted-2);line-height:1.75;font-size:15.5px;margin-bottom:14px}
+.stats{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap}
+.stat .num{font-family:'Space Grotesk';font-size:42px;font-weight:700;line-height:1;letter-spacing:-.02em}
+.stat .num span{background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--muted);font-size:12.5px;margin-top:6px;text-transform:uppercase;letter-spacing:1.5px;font-family:'JetBrains Mono'}
+.about-badge{
+  width:240px;height:340px;justify-self:center;position:relative;
+  background:linear-gradient(180deg,#fff,#dcdcef);border-radius:20px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.1) inset;
+  transform:rotate(-5deg);transition:transform .4s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0a0a14;
+}
+.about-badge:hover{transform:rotate(0) scale(1.04)}
+.about-badge::before{content:"";position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:10px;height:34px;background:#444;border-radius:2px}
+.about-badge .label{font-size:10px;letter-spacing:3px;color:#666;margin-bottom:4px;font-weight:700;font-family:'JetBrains Mono'}
+.about-badge .title{font-size:17px;font-weight:700;text-align:center;padding:0 20px;line-height:1.25;font-family:'Space Grotesk'}
+.about-badge .photo-area{
+  width:150px;height:150px;border-radius:50%;margin:18px 0;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,var(--violet-2),var(--cyan));
+  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-size:62px;font-weight:700;color:#fff;
+  box-shadow:0 0 0 4px #fff, 0 0 0 5px rgba(0,0,0,.1);
+}
+.about-badge .photo-area img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.about-badge .stripe{position:absolute;bottom:14px;font-size:9px;color:#888;font-family:'JetBrains Mono';letter-spacing:2px}
+
+.skills-cats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.skills-cats button{
+  background:transparent;border:1px solid var(--line);color:var(--muted);
+  padding:8px 16px;border-radius:999px;font:500 13px 'Inter';cursor:pointer;transition:all .2s;
+}
+.skills-cats button:hover{color:var(--text);border-color:var(--line-2)}
+.skills-cats button.active{background:linear-gradient(135deg,var(--violet-2),var(--violet));color:#fff;border-color:transparent}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.skill{
+  position:relative;padding:18px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(20,20,38,.55),rgba(12,12,22,.55));
+  display:flex;align-items:center;gap:14px;transition:all .25s;cursor:default;overflow:hidden;
+}
+.skill::before{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(168,140,255,.18), transparent 60%);
+  pointer-events:none;
+}
+.skill:hover{border-color:var(--line-2);transform:translateY(-4px);box-shadow:0 10px 30px rgba(122,92,255,.15)}
+.skill:hover::before{opacity:1}
+.skill .ico-wrap{
+  width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+}
+.skill .ico-wrap svg{width:30px;height:30px}
+.skill .name{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+.skill .lvl{font-size:10.5px;color:var(--violet);font-family:'JetBrains Mono';letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.skill .lvl.adv{color:var(--green)}
+.skill .lvl.beg{color:var(--muted)}
+
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.project{
+  position:relative;padding:0;border-radius:22px;border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(20,20,38,.55),rgba(12,12,22,.55));overflow:hidden;transition:all .3s;
+}
+.project:hover{border-color:var(--line-2);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.project .pic{
+  height:170px;background:linear-gradient(135deg,#1a1a35,#0a0a18);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.project .pic::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(122,92,255,.4), transparent 60%)}
+.project .pic .emo{font-size:60px;position:relative;z-index:1;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}
+.project .body{padding:22px}
+.project h4{font-family:'Space Grotesk';font-size:19px;margin-bottom:8px;letter-spacing:-.01em}
+.project p{color:var(--muted-2);font-size:13.5px;line-height:1.55}
+.project .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.project .tags span{font-size:10.5px;font-family:'JetBrains Mono';padding:4px 10px;border-radius:999px;background:rgba(168,140,255,.1);color:var(--violet);border:1px solid var(--line);letter-spacing:.5px}
+
+.timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.exp{position:relative;padding:26px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(20,20,38,.55),rgba(12,12,22,.55));overflow:hidden;transition:all .25s}
+.exp:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.exp::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--violet-2),var(--cyan))}
+.exp .when{font-family:'JetBrains Mono';font-size:11.5px;color:var(--violet);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.exp h4{font-family:'Space Grotesk';font-size:19px;margin-bottom:4px}
+.exp .where{color:var(--muted-2);font-size:13.5px;margin-bottom:14px;font-style:italic}
+.exp ul{list-style:none;padding:0}
+.exp ul li{position:relative;padding-left:20px;font-size:13.5px;color:#cdcde0;line-height:1.6;margin-bottom:6px}
+.exp ul li::before{content:"▸";position:absolute;left:0;top:0;color:var(--violet)}
+.exp .cert-pill{display:inline-block;font-family:'JetBrains Mono';font-size:11px;background:rgba(57,255,138,.12);color:var(--green);border:1px solid rgba(57,255,138,.3);padding:3px 10px;border-radius:999px;margin-right:6px;margin-bottom:6px}
+
+/* LANGUAGES */
+.lang-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.lang-card{
+  position:relative;padding:18px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(20,20,38,.55),rgba(12,12,22,.55));
+  display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;transition:all .25s;
+}
+.lang-card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.lang-flag{font-size:34px;line-height:1}
+.lang-name{font-family:'Space Grotesk';font-weight:600;font-size:16px}
+.lang-lvl{font-size:12px;color:var(--muted-2);font-family:'JetBrains Mono';margin-top:2px;letter-spacing:.5px}
+.lang-lvl.native{color:var(--green)}
+.lang-bar{grid-column:1/-1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.lang-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--violet-2),var(--cyan));border-radius:3px;transition:width .8s}
+
+/* HOBBIES */
+.hobby-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.hobby{
+  padding:24px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(20,20,38,.55),rgba(12,12,22,.55));
+  transition:all .25s;
+}
+.hobby:hover{border-color:var(--line-2);transform:translateY(-4px);box-shadow:0 14px 40px rgba(122,92,255,.15)}
+.hobby-emo{font-size:36px;margin-bottom:12px;display:inline-block;line-height:1}
+.crest-wrap{position:relative;display:inline-block;width:54px;height:54px}
+.crest-wrap img,.crest-wrap svg{width:54px;height:54px;display:block;filter:drop-shadow(0 6px 16px rgba(255,255,255,.1))}
+.crest-wrap img{position:absolute;inset:0;object-fit:contain}
+.hobby h4{font-family:'Space Grotesk';font-size:17px;margin-bottom:8px;letter-spacing:-.01em}
+.hobby p{color:var(--muted-2);font-size:13.5px;line-height:1.55}
+
+/* CONTACT / CHAT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+
+.contact-tiles{
+  display:grid;grid-template-columns:1fr;gap:12px;align-content:start;
+}
+.ct-tile{
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  padding:18px 20px;border:1px solid var(--line);border-radius:18px;
+  background:linear-gradient(180deg,rgba(20,20,38,.6),rgba(12,12,22,.6));
+  transition:all .25s;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+}
+.ct-tile::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 0% 50%, rgba(122,92,255,.18), transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.ct-tile:not(.static):hover{
+  border-color:var(--line-2);transform:translateX(4px);
+  box-shadow:-6px 8px 30px rgba(122,92,255,.18);
+}
+.ct-tile:not(.static):hover::after{opacity:1}
+.ct-tile.static{cursor:default}
+.ct-ico{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(122,92,255,.18),rgba(34,211,238,.12));
+  border:1px solid var(--line-2);color:var(--violet);flex-shrink:0;
+}
+.ct-ico svg{width:22px;height:22px}
+.ct-meta{min-width:0}
+.ct-lbl{
+  font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted);
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;
+}
+.ct-val{
+  font-family:'Space Grotesk';font-size:16px;font-weight:600;letter-spacing:-.01em;
+  color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.ct-val.ct-green{color:var(--green)}
+.ct-arrow{
+  font-size:20px;color:var(--violet);font-weight:700;opacity:.5;transition:all .25s;
+}
+.ct-tile:hover .ct-arrow{opacity:1;transform:translateX(4px)}
+.ct-pulse{
+  display:block;width:14px;height:14px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 0 rgba(57,255,138,.5);animation:ctPulse 2s infinite;
+}
+@keyframes ctPulse{0%{box-shadow:0 0 0 0 rgba(57,255,138,.6)}70%{box-shadow:0 0 0 12px rgba(57,255,138,0)}100%{box-shadow:0 0 0 0 rgba(57,255,138,0)}}
+.ct-tile.availability .ct-ico{background:rgba(57,255,138,.1);border-color:rgba(57,255,138,.4)}
+.chat,.form{border:1px solid var(--line);border-radius:22px;padding:26px;background:linear-gradient(180deg,rgba(20,20,38,.6),rgba(12,12,22,.6))}
+.chat{display:flex;flex-direction:column;min-height:520px}
+.chat-title{font-family:'Space Grotesk';font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-size:18px}
+.live{font-family:'JetBrains Mono';font-size:10px;background:rgba(57,255,138,.15);color:var(--green);padding:3px 8px;border-radius:999px;letter-spacing:1px}
+
+/* AI PERSONA */
+.ai-persona{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
+  padding:14px;margin-bottom:16px;
+  border:1px solid var(--line-2);border-radius:18px;
+  background:linear-gradient(135deg, rgba(122,92,255,.12), rgba(34,211,238,.06));
+  position:relative;overflow:hidden;
+}
+.ai-persona::before{
+  content:"";position:absolute;inset:-2px;border-radius:20px;z-index:-1;
+  background:conic-gradient(from 0deg, transparent, rgba(122,92,255,.4), transparent 50%);
+  filter:blur(14px);opacity:.6;animation:spin 8s linear infinite;
+}
+.ai-avatar{position:relative;width:64px;height:64px;flex-shrink:0}
+.ai-avatar img.ai-pic, .ai-avatar svg.ai-default{
+  width:64px;height:64px;border-radius:50%;display:block;
+  border:2px solid var(--line-2);box-shadow:0 0 0 2px rgba(0,0,0,.4), 0 8px 20px rgba(122,92,255,.4);
+  object-fit:cover;
+}
+.ai-avatar svg.ai-default{display:none}
+.ai-online{
+  position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--green);border:2px solid var(--card);
+  box-shadow:0 0 0 0 rgba(57,255,138,.6);animation:ctPulse 2s infinite;
+}
+.ai-meta{min-width:0}
+.ai-name{
+  font-family:'Space Grotesk';font-size:19px;font-weight:700;letter-spacing:-.01em;
+  display:flex;align-items:center;gap:8px;
+}
+.ai-name span{
+  background:linear-gradient(135deg,var(--violet),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:800;
+}
+.ai-sub{
+  font-family:'JetBrains Mono';font-size:11px;color:var(--muted-2);
+  margin-top:4px;letter-spacing:.5px;
+}
+.chat-body{flex:1;overflow-y:auto;max-height:380px;margin-bottom:14px;padding-right:4px}
+.chat-body::-webkit-scrollbar{width:6px}
+.chat-body::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
+.chat-msg{padding:12px 15px;border-radius:14px;margin-bottom:10px;font-size:13.5px;line-height:1.5;max-width:85%}
+.chat-msg .who{font-size:10.5px;font-family:'JetBrains Mono';margin-bottom:4px;letter-spacing:.5px;opacity:.8}
+.chat-msg.bot{background:rgba(168,140,255,.08);border:1px solid var(--line)}
+.chat-msg.bot .who{color:var(--violet)}
+.chat-msg.user{background:linear-gradient(135deg,rgba(122,92,255,.3),rgba(34,211,238,.2));border:1px solid var(--line-2);margin-left:auto}
+.chat-msg.user .who{color:var(--cyan)}
+.chat-suggest{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chat-suggest button{font-family:'JetBrains Mono';font-size:11px;background:rgba(168,140,255,.06);border:1px solid var(--line);color:var(--muted-2);padding:6px 10px;border-radius:999px;cursor:pointer;transition:all .2s}
+.chat-suggest button:hover{background:rgba(168,140,255,.16);color:var(--text);border-color:var(--line-2)}
+.chat-input{display:flex;gap:8px}
+.chat-input input{flex:1;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;padding:12px 15px;color:var(--text);font-family:inherit;font-size:14px;outline:none;transition:all .2s}
+.chat-input input:focus{border-color:var(--violet)}
+.chat-input button{background:linear-gradient(135deg,var(--violet-2),var(--violet));border:none;border-radius:12px;color:#fff;font-weight:600;cursor:pointer;padding:0 18px;transition:transform .2s}
+.chat-input button:hover{transform:translateY(-2px)}
+.typing{display:inline-flex;gap:3px;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--violet);animation:tdot 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,12px)}to{opacity:1;transform:translate(-50%,0)}}
+.alt-row{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.alt-row button{
+  background:rgba(168,140,255,.06);border:1px solid var(--line);color:var(--muted-2);
+  padding:6px 12px;border-radius:999px;font:600 11px 'JetBrains Mono';cursor:pointer;
+  transition:all .2s;letter-spacing:.5px;text-transform:uppercase;
+}
+.alt-row button:hover{background:rgba(168,140,255,.16);color:var(--text);border-color:var(--line-2)}
+
+.form label{display:block;font-size:12.5px;font-family:'JetBrains Mono';color:var(--muted);margin-bottom:6px;margin-top:14px;letter-spacing:.5px;text-transform:uppercase}
+.form label:first-child{margin-top:0}
+.form input,.form textarea{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;padding:12px 15px;color:var(--text);font-family:inherit;font-size:14px;outline:none;transition:all .2s}
+.form input:focus,.form textarea:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(122,92,255,.15)}
+.form textarea{resize:vertical;min-height:90px}
+.form .submit{width:100%;margin-top:20px;padding:14px;background:linear-gradient(135deg,var(--violet-2),var(--violet));border:none;border-radius:12px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;letter-spacing:.5px;transition:all .25s}
+.form .submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(122,92,255,.4)}
+
+footer{padding:50px 0 30px;text-align:center;border-top:1px solid var(--line);margin-top:80px;color:var(--muted);font-size:13px}
+footer .links{display:flex;gap:20px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+footer .links a{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:13px;transition:color .2s}
+footer .links a:hover{color:var(--violet)}
+footer .links a svg{width:16px;height:16px}
+
+@media (max-width:980px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .timeline{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid{grid-template-columns:1fr}
+  .hobby-grid{grid-template-columns:1fr}
+  nav .links{display:none}
+  .profile-card{width:300px;height:440px}
+  .about-badge{transform:rotate(-3deg);width:200px;height:280px}
+  section{padding:60px 0}
+}
+@media (max-width:540px){
+  nav{padding:6px 6px 6px 14px;gap:10px}
+  nav .brand{font-size:13px}
+  nav .lang button{padding:5px 7px;font-size:10px}
+  .skills-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">PJ<span>.</span></div>
+  <div class="links">
+    <a href="#home" data-i18n="nav_home">Start</a>
+    <a href="#about" data-i18n="nav_about">O mnie</a>
+    <a href="#skills" data-i18n="nav_skills">Skille</a>
+    <a href="#exp" data-i18n="nav_exp">Doświadczenie</a>
+    <a href="#projects" data-i18n="nav_projects">Projekty</a>
+    <a href="#contact" data-i18n="nav_contact">Kontakt</a>
+  </div>
+  <div class="lang">
+    <button data-lang="pl" class="active">PL</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="fr">FR</button>
+    <button data-lang="de">DE</button>
+    <button data-lang="es">ES</button>
+  </div>
+</nav>
+
+<header id="home" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="tag"><span class="dot"></span><span data-i18n="hero_tag">Kraków · Remote · Otwarty na rozwój w IT</span></div>
+      <div class="role-line mono"><span id="typed"></span><span class="cursor"></span></div>
+      <h1 class="hero-title">
+        <span data-i18n="hero_hi">Cześć, jestem</span>
+        <br><span class="accent">Paweł Jankowicz</span>
+      </h1>
+      <p class="lede" data-i18n="hero_lede">Technik Informatyk (EE.08 + EE.09), pracownik Bank Pekao S.A. na infolinii klienta firmowego, student cyberbezpieczeństwa i analityki danych. Pasjonat AI, Linuksa, automatyzacji i tworzenia treści.</p>
+      <div class="cta">
+        <a href="#contact" class="btn primary"><span data-i18n="hero_cta1">Pobierz CV</span> ↓</a>
+        <a href="#projects" class="btn"><span data-i18n="hero_cta2">Zobacz projekty</span> →</a>
+        <a href="https://github.com/Pawel123j" target="_blank" rel="noopener" class="btn gh">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.69-.01-1.36-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="top">
+        <div>
+          <div class="name">Paweł Jankowicz</div>
+          <div class="role" data-i18n="role">IT · FinTech · AI</div>
+        </div>
+        <a class="qr" href="https://github.com/Pawel123j" target="_blank" rel="noopener" title="Skanuj lub kliknij → GitHub">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=0&data=https%3A%2F%2Fgithub.com%2FPawel123j" alt="QR → GitHub">
+        </a>
+      </div>
+      <div class="photo">
+        <div class="badge mono">ID · 2026</div>
+        <div class="scan"></div>
+        <img class="pj-photo" alt="Paweł Jankowicz" data-srcs="pawel.png|pawel.jpg|pawel.jpeg|paweł.png|paweł.jpg|photo.jpg|photo.jpeg|photo.png|pj.jpg|pj.png">
+        <div class="initials">PJ</div>
+      </div>
+      <div class="footer">
+        <div class="handle">@Pawel123j<br><span class="green">● Online</span></div>
+        <a href="#contact" class="ctc" data-i18n="contact_me">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee"><div class="track" id="marqTrack"></div></div>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="about_kicker">o mnie</span></div>
+      <h2><span data-i18n="about_h">Technik IT,</span> <span class="accent" data-i18n="about_h2">student, twórca</span></h2>
+    </div>
+    <div class="about-box">
+      <div class="about-grid">
+        <div>
+          <h3 data-i18n="about_h3">Technik Informatyk z dyplomami EE.08 + EE.09 i głową w chmurach AI.</h3>
+          <p data-i18n="about_p1">Skończyłem technikum informatyczne w Bochni — zdałem pełne kwalifikacje EE.08 (montaż i eksploatacja systemów komputerowych, urządzeń peryferyjnych i sieci) oraz EE.09 (programowanie, tworzenie i administrowanie stronami internetowymi i bazami danych). Składam komputery, instaluję systemy, konfiguruję sieci, piszę w PHP/SQL/Pythonie, robię dashboardy w Excelu i edytuję wideo w Premiere.</p>
+          <p data-i18n="about_p2">Na co dzień pracuję w Banku Pekao S.A. jako Senior / Główny Specjalista ds. obsługi klienta firmowego (infolinia) — to nie jest jeszcze rola IT, ale daje mi solidną wiedzę o systemach bankowych (Pekao24, PeoBiz 2.0, PeoPay), procedurach bezpieczeństwa i pracy w środowisku regulowanym. Pochodzę z Krakowa, studiuję zaocznie w WSKZ Wrocław — uczelnia daje mi przestrzeń do rozwoju w tym, co kocham: cyberbezpieczeństwo (3. semestr) i bazy danych + analityka biznesowa (2. semestr).</p>
+          <p data-i18n="about_p3">Jestem samoukiem — szybko łapię nowe rzeczy, wystarczy że mnie raz przeszkolisz i lecę. Wbijam mocno w AI (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linuxa, automatyzację. Kiedyś próbowałem robić AI-content na YouTube — nie wyszło, ale zostały mi narzędzia, warsztat i dobry sznyt do storytellingu. Posiadam orzeczenie o stopniu niepełnosprawności (II grupa) — w pracy biurowej / IT bez przeszkód. Cel: IT w bankowości, security ops albo FinTech.</p>
+          <div class="stats">
+            <div class="stat"><div class="num">2<span>+</span></div><div class="lbl mono" data-i18n="stat_years">Lat w Pekao</div></div>
+            <div class="stat"><div class="num">35<span>+</span></div><div class="lbl mono" data-i18n="stat_tech">Technologii</div></div>
+            <div class="stat"><div class="num">2<span>×</span></div><div class="lbl mono" data-i18n="stat_quals">Kwalifikacje EE</div></div>
+            <div class="stat"><div class="num">5<span>×</span></div><div class="lbl mono" data-i18n="stat_langs">Języków UI</div></div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="label">TECHNIK INFORMATYK</div>
+          <div class="photo-area">
+            <img class="pj-photo" alt="" data-srcs="pawel.png|pawel.jpg|pawel.jpeg|paweł.png|paweł.jpg|photo.jpg|photo.jpeg|photo.png|pj.jpg|pj.png">
+            <span style="position:relative;z-index:0">PJ</span>
+          </div>
+          <div class="title" data-i18n="badge_title">EE.08 · EE.09<br>Cybersecurity Student</div>
+          <div class="stripe">— ACCESS GRANTED —</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="skills_kicker">stack</span></div>
+      <h2><span data-i18n="skills_h">Stos</span> <span class="accent" data-i18n="skills_h2">technologiczny</span></h2>
+      <p data-i18n="skills_p">Języki, frameworki, AI tools, systemy, hardware i programy graficzne. Filtr klikalny — wybierz kategorię.</p>
+    </div>
+    <div class="skills-cats">
+      <button class="active" data-cat="all" data-i18n="cat_all">Wszystko</button>
+      <button data-cat="ai" data-i18n="cat_ai">AI Tools</button>
+      <button data-cat="lang" data-i18n="cat_lang">Języki</button>
+      <button data-cat="web" data-i18n="cat_web">Web</button>
+      <button data-cat="db" data-i18n="cat_db">Bazy / Data</button>
+      <button data-cat="sys" data-i18n="cat_sys">Systemy / DevOps</button>
+      <button data-cat="hw" data-i18n="cat_hw">Hardware / Sieci</button>
+      <button data-cat="sec" data-i18n="cat_sec">Cybersecurity</button>
+      <button data-cat="design" data-i18n="cat_design">Design / Video</button>
+      <button data-cat="game" data-i18n="cat_game">Game Dev</button>
+      <button data-cat="mobile" data-i18n="cat_mobile">Mobile</button>
+      <button data-cat="office" data-i18n="cat_office">Office</button>
+    </div>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+
+<section id="exp">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="exp_kicker">kariera</span></div>
+      <h2><span data-i18n="exp_h">Doświadczenie</span> <span class="accent" data-i18n="exp_h2">i edukacja</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="exp">
+        <div class="when">DEC 2023 — <span data-i18n="now">obecnie</span></div>
+        <h4 data-i18n="exp1_role">Senior / Główny Specjalista ds. obsługi klienta firmowego</h4>
+        <div class="where">Bank Pekao S.A. — Infolinia klienta firmowego</div>
+        <ul>
+          <li data-i18n="exp1_b1">Wsparcie klientów korporacyjnych w bankowości online (Pekao24, PeoBiz 2.0, PeoPay)</li>
+          <li data-i18n="exp1_b2">Wielojęzyczna obsługa (PL, EN) — telefon, e-mail, czat</li>
+          <li data-i18n="exp1_b3">Pierwsza linia helpdesku — diagnoza i rozwiązywanie problemów technicznych</li>
+          <li data-i18n="exp1_b4">Onboarding i mentoring nowych pracowników</li>
+          <li data-i18n="exp1_b5">Pełna zgodność z procedurami bezpieczeństwa danych</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="when">SEP 2019</div>
+        <h4 data-i18n="exp2_role">Stażysta IT</h4>
+        <div class="where">Linkart — serwis komputerowy, Kłaj</div>
+        <ul>
+          <li data-i18n="exp2_b1">Diagnostyka i kalibracja sprzętu komputerowego</li>
+          <li data-i18n="exp2_b2">Składanie komputerów, wymiana podzespołów, instalacja systemów</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="when">2018 — 2022</div>
+        <h4 data-i18n="edu3">Technik Informatyk</h4>
+        <div class="where" data-i18n="edu3_where">Bochnia — wykształcenie zawodowe</div>
+        <div style="margin-bottom:10px">
+          <span class="cert-pill">EE.08</span><span class="cert-pill">EE.09</span>
+        </div>
+        <ul>
+          <li data-i18n="edu3_b1"><b>EE.08</b> — montaż i eksploatacja systemów komputerowych, urządzeń peryferyjnych i sieci</li>
+          <li data-i18n="edu3_b2"><b>EE.09</b> — programowanie, tworzenie i administrowanie stronami internetowymi i bazami danych</li>
+          <li data-i18n="edu3_b3">Hardware, BIOS/UEFI, LAN/WLAN, instalacja Windows/Linux, PHP, MySQL, HTML/CSS/JS</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="when">FEB 2024 — <span data-i18n="now2">obecnie</span></div>
+        <h4 data-i18n="edu1">Cyberbezpieczeństwo</h4>
+        <div class="where" data-i18n="edu1_where">Wrocław — studia, 3. semestr</div>
+        <ul>
+          <li data-i18n="edu1_b">Ethical hacking, bezpieczeństwo sieci, ochrona danych, kryptografia, OSINT</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="when">OCT 2024 — <span data-i18n="now3">obecnie</span></div>
+        <h4 data-i18n="edu2">Bazy danych, Data Science i analityka biznesowa</h4>
+        <div class="where" data-i18n="edu2_where">Wrocław — studia, 2. semestr</div>
+        <ul>
+          <li data-i18n="edu2_b">SQL, Python, R, modele analityczne, Power BI, statystyka, ML basics</li>
+        </ul>
+      </div>
+      <div class="exp">
+        <div class="when">2022 — 2023</div>
+        <h4 data-i18n="edu4">Certyfikaty Udemy</h4>
+        <div class="where" data-i18n="edu4_where">7 ukończonych szkoleń online</div>
+        <ul>
+          <li>CCNA — exam 200-301 · Ethical Hacking · Python 3</li>
+          <li>PHP & MySQL · Front End · Premiere Pro · PHP 7.4</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="proj_kicker">projekty</span></div>
+      <h2><span data-i18n="proj_h">Wybrane</span> <span class="accent" data-i18n="proj_h2">projekty</span></h2>
+      <p data-i18n="proj_p">Mix bankowych usprawnień, AI-contentu, skryptów i domowego laba. Niektóre wyszły, niektóre się sypnęły — wszystkich się nauczyłem.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project">
+        <div class="pic"><div class="emo">🤖</div></div>
+        <div class="body">
+          <h4 data-i18n="proj_ai_h">AI YouTube Lab (RIP)</h4>
+          <p data-i18n="proj_ai_p">Próba kanału z AI-contentem: scenariusze w ChatGPT/Claude, generacja głosów w ElevenLabs, wideo w Kling AI, montaż w Premiere. Wyszło średnio — ale kupę wiedzy zostało.</p>
+          <div class="tags"><span>ChatGPT</span><span>Claude</span><span>ElevenLabs</span><span>Kling</span><span>Premiere</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🏦</div></div>
+        <div class="body">
+          <h4 data-i18n="proj1_h">Banking Helpdesk Workflow</h4>
+          <p data-i18n="proj1_p">Optymalizacja procesów wsparcia dla klientów firmowych Pekao — szybsza reakcja, lepsza dokumentacja zgłoszeń, mniej eskalacji.</p>
+          <div class="tags"><span>Pekao24</span><span>PeoBiz 2.0</span><span>Helpdesk</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🐍</div></div>
+        <div class="body">
+          <h4 data-i18n="proj2_h">Python Automation Toolkit</h4>
+          <p data-i18n="proj2_p">Skrypty do przetwarzania danych, raportowania i automatyzacji — pandas, openpyxl, REST API, web scraping.</p>
+          <div class="tags"><span>Python</span><span>Pandas</span><span>SQL</span><span>API</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">💻</div></div>
+        <div class="body">
+          <h4 data-i18n="proj_pc_h">PC Builds & Hardware</h4>
+          <p data-i18n="proj_pc_p">Składanie komputerów stacjonarnych, dobór podzespołów, diagnostyka, wymiana hardware'u, instalacja Windows/Linux. Spadek po EE.08.</p>
+          <div class="tags"><span>Hardware</span><span>BIOS/UEFI</span><span>Diagnostyka</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🔐</div></div>
+        <div class="body">
+          <h4 data-i18n="proj5_h">Home Cyber Lab</h4>
+          <p data-i18n="proj5_p">Lab w VirtualBox/VMware: Kali, Fedora, Mint, Ubuntu Server, Windows Server — pentesty, hardening, Cisco Packet Tracer, CCNA.</p>
+          <div class="tags"><span>Kali</span><span>Cisco</span><span>VMware</span><span>Pentest</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🐧</div></div>
+        <div class="body">
+          <h4 data-i18n="proj7_h">Linux Daily Driver</h4>
+          <p data-i18n="proj7_p">Codzienna praca na Fedorze, Ubuntu i Linux Mint — bash, systemd, dotfiles, automatyzacja, pipeline'y w terminalu.</p>
+          <div class="tags"><span>Fedora</span><span>Ubuntu</span><span>Mint</span><span>Bash</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🌐</div></div>
+        <div class="body">
+          <h4 data-i18n="proj3_h">Full-stack Web Apps</h4>
+          <p data-i18n="proj3_p">Aplikacje webowe z PHP + MySQL i czystym JS — projekty edukacyjne i osobiste z naciskiem na bezpieczeństwo.</p>
+          <div class="tags"><span>PHP</span><span>MySQL</span><span>HTML/CSS/JS</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">🎮</div></div>
+        <div class="body">
+          <h4 data-i18n="proj_unity_h">Unity Game Prototypes</h4>
+          <p data-i18n="proj_unity_p">Pierwsze kroki w gamedevie — proste prototypy 2D/3D w Unity, C#, eksperymenty z mechaniką.</p>
+          <div class="tags"><span>Unity</span><span>C#</span><span>Game Dev</span></div>
+        </div>
+      </div>
+      <div class="project">
+        <div class="pic"><div class="emo">📊</div></div>
+        <div class="body">
+          <h4 data-i18n="proj9_h">Excel / Power BI Dashboards</h4>
+          <p data-i18n="proj9_p">Arkusze, formuły, Power Query i wizualizacje BI — raporty, KPI, prognozy. Średnio-zaawansowany Excel, advanced Power BI.</p>
+          <div class="tags"><span>Excel</span><span>Power BI</span><span>R</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="languages">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="lang_kicker">języki obce</span></div>
+      <h2><span data-i18n="lang_h">Języki</span> <span class="accent" data-i18n="lang_h2">komunikacji</span></h2>
+      <p data-i18n="lang_p">Codzienna obsługa klientów w PL i EN, reszta na poziomie podstawowym i w trakcie nauki.</p>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card"><div class="lang-flag">🇵🇱</div><div><div class="lang-name" data-i18n="lang_pl">Polski</div><div class="lang-lvl native" data-i18n="lang_native">Native</div></div><div class="lang-bar"><span style="width:100%"></span></div></div>
+      <div class="lang-card"><div class="lang-flag">🇬🇧</div><div><div class="lang-name" data-i18n="lang_en">Angielski</div><div class="lang-lvl">B1 → C1 <span data-i18n="lang_learn">(uczę się do certyfikatu)</span></div></div><div class="lang-bar"><span style="width:55%"></span></div></div>
+      <div class="lang-card"><div class="lang-flag">🇩🇪</div><div><div class="lang-name" data-i18n="lang_de">Niemiecki</div><div class="lang-lvl">A2 <span data-i18n="lang_learn2">(uczę się)</span></div></div><div class="lang-bar"><span style="width:30%"></span></div></div>
+      <div class="lang-card"><div class="lang-flag">🇪🇸</div><div><div class="lang-name" data-i18n="lang_es">Hiszpański</div><div class="lang-lvl">A1 <span data-i18n="lang_start">(zaczynam)</span></div></div><div class="lang-bar"><span style="width:15%"></span></div></div>
+      <div class="lang-card"><div class="lang-flag">🇫🇷</div><div><div class="lang-name" data-i18n="lang_fr">Francuski</div><div class="lang-lvl">A1 <span data-i18n="lang_start2">(zaczynam)</span></div></div><div class="lang-bar"><span style="width:15%"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="hobbies">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="hob_kicker">poza pracą</span></div>
+      <h2><span data-i18n="hob_h">Po godzinach,</span> <span class="accent" data-i18n="hob_h2">poza klawiaturą</span></h2>
+      <p data-i18n="hob_p">Bo człowiek to nie tylko stack technologii. Oto co mnie napędza poza ekranem.</p>
+    </div>
+    <div class="hobby-grid">
+      <div class="hobby"><div class="hobby-emo"><span class="crest-wrap">
+        <img class="pj-crest" alt="Los Blancos" data-srcs="realmadrid.png|realmadrid.jpg|realmadrid.svg|crest.png|crest.svg">
+        <svg class="crest-default" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ececf3"/></linearGradient>
+            <linearGradient id="cGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd76a"/><stop offset="1" stop-color="#c89234"/></linearGradient>
+          </defs>
+          <circle cx="32" cy="34" r="22" fill="url(#cBg)" stroke="#1f3a8a" stroke-width="2"/>
+          <path d="M14 14 l4 6 4-6 4 6 4-6 4 6 4-6 4 6 4-6 4 6 4-6 v6 h-36z" fill="url(#cGold)" stroke="#9c6e1a" stroke-width=".8"/>
+          <circle cx="18" cy="14" r="2" fill="#c8262d"/>
+          <circle cx="32" cy="14" r="2" fill="#c8262d"/>
+          <circle cx="46" cy="14" r="2" fill="#c8262d"/>
+          <text x="32" y="42" text-anchor="middle" font-family="Space Grotesk, serif" font-size="18" font-weight="800" fill="#1f3a8a" letter-spacing="-1">RM</text>
+          <path d="M22 48 q10 6 20 0" stroke="#c8262d" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>
+      </span></div><h4 data-i18n="hob1_h">¡Hala Madrid!</h4><p data-i18n="hob1_p">Kibic Realu Madryt od lat — Los Blancos, La Décima, Bernabéu. Mecz, kawa, dobre towarzystwo.</p></div>
+      <div class="hobby"><div class="hobby-emo">🚀</div><h4 data-i18n="hob2_h">Rozwój osobisty</h4><p data-i18n="hob2_p">Codzienna praca nad sobą — nawyki, czytanie, dyscyplina. Lubię motywować siebie i innych.</p></div>
+      <div class="hobby"><div class="hobby-emo">🌱</div><h4 data-i18n="hob3_h">Eko-mindset</h4><p data-i18n="hob3_p">Recykling, świadome wybory, segregacja — drobne rzeczy które robią różnicę.</p></div>
+      <div class="hobby"><div class="hobby-emo">🎮</div><h4 data-i18n="hob4_h">Gaming (RPG, strategie)</h4><p data-i18n="hob4_p">Gry RPG i strategie rozwijają analityczne myślenie i pracę zespołową w sieci.</p></div>
+      <div class="hobby"><div class="hobby-emo">🤖</div><h4 data-i18n="hob5_h">AI i FinTech</h4><p data-i18n="hob5_p">Codzienna obserwacja trendów AI/ML, FinTechu i wpływu nowych technologii na finanse.</p></div>
+      <div class="hobby"><div class="hobby-emo">📚</div><h4 data-i18n="hob6_h">Historia</h4><p data-i18n="hob6_p">Polska i europejska historia — dokumenty, książki, lekcje z przeszłości dla dzisiaj.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker mono">// <span data-i18n="contact_kicker">kontakt</span></div>
+      <h2><span data-i18n="contact_h">Pogadajmy</span> <span class="accent">·</span></h2>
+      <p data-i18n="contact_p">Otwarty na rolę w IT/security/data, FinTech, freelance video AI i ciekawą współpracę.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="chat">
+        <div class="ai-persona">
+          <div class="ai-avatar">
+            <!-- ⬇⬇⬇ TUTAJ PODMIEŃ src= NA SWÓJ AI AVATAR (URL ze zdjęciem albo nazwa pliku w folderze) ⬇⬇⬇ -->
+            <img class="ai-pic" src="pawelai.png" alt="Paweł AI"
+                 onerror="this.style.display='none'; this.parentElement.querySelector('.ai-default').style.display='block'">
+            <!-- ⬆⬆⬆ TUTAJ PODMIEŃ src= ⬆⬆⬆ -->
+            <svg class="ai-default" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="aiBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+              </defs>
+              <circle cx="32" cy="32" r="32" fill="url(#aiBg)"/>
+              <circle cx="32" cy="26" r="9" fill="#ffffff" opacity=".95"/>
+              <path d="M14 58 q18-20 36 0 v6 h-36z" fill="#ffffff" opacity=".9"/>
+              <circle cx="28.5" cy="25" r="1.6" fill="#0a0a14"/>
+              <circle cx="35.5" cy="25" r="1.6" fill="#0a0a14"/>
+              <text x="32" y="48" text-anchor="middle" font-family="JetBrains Mono" font-size="9" font-weight="700" fill="#0a0a14">AI</text>
+            </svg>
+            <span class="ai-online"></span>
+          </div>
+          <div class="ai-meta">
+            <div class="ai-name">Paweł <span>AI</span></div>
+            <div class="ai-sub" data-i18n="ai_sub">● Online · trenowany na profilu Pawła</div>
+          </div>
+          <span class="live">LIVE</span>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-suggest" id="chatSuggest"></div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Zapytaj cokolwiek..." data-i18n-ph="chat_ph">
+          <button id="chatSend">→</button>
+        </div>
+      </div>
+      <!--
+        ======================================================================
+         FORMULARZ KONTAKTOWY — SETUP W 2 MINUTY (Web3Forms, darmowe na zawsze)
+        ======================================================================
+         1. Wejdź na https://web3forms.com  (żadne hasło nie potrzebne)
+         2. Wpisz swój e-mail:  paweljanko123@gmail.com
+         3. Kliknij "Create Access Key" — dostaniesz klucz na maila i na stronie
+         4. Skopiuj ten klucz (32 znaki, np.  a1b2c3d4-e5f6-7890-abcd-1234567890ab)
+         5. Zamień poniższy WSTAW_TUTAJ_SWOJ_KLUCZ na ten klucz
+         ----------------------------------------------------------------------
+         Po podmianie klucza: gotowe. Wiadomości od odwiedzających przyjdą Ci
+         automatycznie na paweljanko123@gmail.com — bez otwierania Gmaila,
+         bez logowania, bez niczego. Limit darmowy: 250 maili / miesiąc.
+        ======================================================================
+      -->
+      <div class="contact-tiles">
+        <a href="mailto:paweljanko123@gmail.com" class="ct-tile">
+          <div class="ct-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_email_l">E-mail · najlepszy sposób</div>
+            <div class="ct-val">paweljanko123@gmail.com</div>
+          </div>
+          <div class="ct-arrow">→</div>
+        </a>
+        <a href="https://github.com/Pawel123j" target="_blank" rel="noopener" class="ct-tile">
+          <div class="ct-ico">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.69-.01-1.36-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_gh_l">GitHub · projekty i kod</div>
+            <div class="ct-val">@Pawel123j</div>
+          </div>
+          <div class="ct-arrow">↗</div>
+        </a>
+        <a href="tel:+48797380903" class="ct-tile">
+          <div class="ct-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_phone_l">Telefon · pon–pt, 9–17</div>
+            <div class="ct-val">+48 797 380 903</div>
+          </div>
+          <div class="ct-arrow">→</div>
+        </a>
+        <div class="ct-tile static">
+          <div class="ct-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_loc_l">Lokalizacja</div>
+            <div class="ct-val" data-i18n="ct_loc_v">Kraków, PL · Remote OK</div>
+          </div>
+        </div>
+        <div class="ct-tile static availability">
+          <div class="ct-ico"><span class="ct-pulse"></span></div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_status_l">Status</div>
+            <div class="ct-val ct-green" data-i18n="ct_status_v">Otwarty na nowe wyzwania</div>
+          </div>
+        </div>
+        <div class="ct-tile static">
+          <div class="ct-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="ct-meta">
+            <div class="ct-lbl" data-i18n="ct_lang_l">Komunikacja</div>
+            <div class="ct-val" data-i18n="ct_lang_v">PL · EN · DE · FR · ES</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="mailto:paweljanko123@gmail.com">✉ paweljanko123@gmail.com</a>
+      <a href="tel:+48797380903">☎ +48 797 380 903</a>
+      <a href="https://github.com/Pawel123j" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.69-.01-1.36-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.81.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        github.com/Pawel123j
+      </a>
+      <a href="#home" data-i18n="back_top">↑ Powrót do góry</a>
+    </div>
+    <div>© 2026 Paweł Jankowicz · <span data-i18n="rights">Wszystkie prawa zastrzeżone</span> · Built with ❤ + ☕ + Linux</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- TECH ICON LIBRARY (inline SVG) ---------- */
+const I = {
+  python:`<svg viewBox="0 0 32 32"><defs><linearGradient id="py1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#387EB8"/><stop offset="1" stop-color="#366994"/></linearGradient><linearGradient id="py2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE873"/><stop offset="1" stop-color="#FFD43B"/></linearGradient></defs><path fill="url(#py1)" d="M15.9 2c-3.4 0-3.2 1.5-3.2 1.5v1.5h3.3v.5H11s-2.4-.3-2.4 3.4S10.7 12 10.7 12h1.4v-1.7s-.1-2.1 2-2.1h3.3s2 0 2-2V3.7S19.7 2 15.9 2zm-1.8 1c.3 0 .6.3.6.7s-.3.7-.6.7-.6-.3-.6-.7c-.1-.4.2-.7.6-.7z"/><path fill="url(#py2)" d="M16.1 30c3.4 0 3.2-1.5 3.2-1.5V27H16v-.5h5s2.4.3 2.4-3.5S21.3 20 21.3 20h-1.4v1.7s.1 2.1-2 2.1h-3.3s-2 0-2 2v3.5S12.3 30 16.1 30zm1.8-1c-.3 0-.6-.3-.6-.7s.3-.7.6-.7.6.3.6.7-.2.7-.6.7z"/></svg>`,
+  sql:`<svg viewBox="0 0 32 32"><ellipse cx="16" cy="7" rx="11" ry="3.5" fill="none" stroke="#00758f" stroke-width="2"/><path fill="none" stroke="#00758f" stroke-width="2" d="M5 7v6c0 1.9 4.9 3.5 11 3.5S27 14.9 27 13V7M5 13v6c0 1.9 4.9 3.5 11 3.5S27 20.9 27 19v-6M5 19v6c0 1.9 4.9 3.5 11 3.5S27 26.9 27 25v-6"/></svg>`,
+  html:`<svg viewBox="0 0 32 32"><path fill="#E34F26" d="M4 2l2.4 27.2L16 32l9.6-2.8L28 2H4z"/><path fill="#EF652A" d="M16 29.7l7.8-2.3 2-22.4H16z"/><path fill="#fff" d="M16 13H8.6l.3 3H16v-3zm0-6H8l.3 3H16V7zm0 12.7l-3.5-1-.2-2.5h-3l.4 5 6.3 1.8v-3.3z"/><path fill="#EBEBEB" d="M15.9 13v3h3.5l-.3 3.7-3.2.9v3.3l6.3-1.8.5-7H15.9zm0-6v3h7.7l.2-3h-7.9z"/></svg>`,
+  css:`<svg viewBox="0 0 32 32"><path fill="#1572B6" d="M4 2l2.4 27.2L16 32l9.6-2.8L28 2H4z"/><path fill="#33A9DC" d="M16 29.7l7.8-2.3 2-22.4H16z"/><path fill="#fff" d="M16 13.7h3.9l.3-3H16V7.8h7.6l-.1 1L23 16.7h-7v-3zm0 7.8L12.7 20.6l-.2-2.4H9.5l.4 4.7 6.1 1.7v-3.1z"/><path fill="#EBEBEB" d="M15.9 13.7v3H19.8l-.4 4.1-3.5 1v3.1l6.4-1.7 1-11.5h-7.4zm0-5.9v2.9h7.6l.1-2.9h-7.7z"/></svg>`,
+  js:`<svg viewBox="0 0 32 32"><path fill="#F7DF1E" d="M2 2h28v28H2z"/><path d="M21.6 24c.6 1 1.5 1.7 2.9 1.7 1.2 0 2-.6 2-1.4 0-1-.8-1.4-2.1-2l-.7-.3c-2.1-.9-3.5-2-3.5-4.3 0-2.2 1.7-3.8 4.2-3.8 1.8 0 3.1.6 4.1 2.3l-2.2 1.4c-.5-.9-1-1.2-1.8-1.2s-1.4.5-1.4 1.2c0 .9.5 1.2 1.8 1.8l.7.3c2.5 1 3.9 2.1 3.9 4.4 0 2.7-2.1 4.1-4.9 4.1-2.7 0-4.5-1.3-5.4-3l2.4-1.5zm-9.5 0c.5.8 1 1.5 1.9 1.5s1.4-.3 1.4-1.7v-9.5h2.7v9.5c0 2.8-1.6 4.1-4 4.1-2.2 0-3.4-1.1-4-2.4l2-1.5z"/></svg>`,
+  php:`<svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="14" ry="8" fill="#777BB4"/><path fill="#fff" d="M7.5 13l-1 5h1.5l.3-1.4h1.2c1.3 0 2.4-.7 2.6-2 .3-1.4-.6-1.6-1.5-1.6H7.5zm5.6-2l-1 5h1.4l.5-2.3h1.4c.9 0 .9.5.8 1l-.3 1.3h1.5l.3-1.5c.2-.9-.1-1.4-.7-1.4 1-.2 1.6-.6 1.8-1.4.2-1.2-.6-1.5-1.4-1.5h-2.7zm8.4 2l-1 5h1.4l.4-1.4h1.2c1.3 0 2.4-.7 2.7-2 .2-1.4-.6-1.6-1.5-1.6h-3.2z"/></svg>`,
+  java:`<svg viewBox="0 0 32 32"><path fill="#E76F00" d="M11.4 22.1s-.9.6.6.7c1.9.2 2.8.2 4.9-.2.4.3.8.5 1.4.7-4.7 2-10.7-.1-6.9-1.2zm-.6-2.6s-1 .8.5 1c2 .2 3.6.2 6.4-.3.3.3.7.5 1.1.7-5.7 1.7-12.1.1-8-1.4z"/><path fill="#5382A1" d="M16.9 14.6c1.2 1.4-.3 2.6-.3 2.6s3-1.5 1.6-3.4c-1.3-1.8-2.3-2.7 3.1-5.8 0 0-8.5 2.1-4.4 6.6zm5.7 9c0 0 .7.6-.8 1-2.7.8-11.3 1.1-13.6 0-.8-.4.7-.9 1.2-1 .5-.1.8-.1.8-.1-.9-.6-5.9 1.3-2.5 1.8 9.2 1.5 16.7-.6 14.9-1.7zM16.5 6c0 0 2.4 2.4-2.3 6-3.7 3-.8 4.6 0 6.5-2.2-2-3.8-3.7-2.7-5.3 1.6-2.4 6-3.5 5-7.2z"/></svg>`,
+  cpp:`<svg viewBox="0 0 32 32"><path fill="#00599C" d="M28 23l-1 .6-11 6.3c-.4.2-1 .2-1.4 0L4 23.6c-.4-.2-.7-.7-.7-1.2V10c0-.5.3-1 .7-1.2L15 2.5c.4-.2 1-.2 1.4 0l11 6.3c.4.2.7.7.7 1.2v12.4c0 .2-.1.4-.2.6z"/><path fill="#fff" d="M21 19c-1 1.7-2.9 2.9-5 2.9-3.3 0-5.9-2.6-5.9-5.9S12.7 10 16 10c2.2 0 4.1 1.2 5 2.9l-2.6 1.5c-.5-.8-1.4-1.4-2.4-1.4-1.6 0-2.9 1.3-2.9 2.9 0 1.6 1.3 2.9 2.9 2.9 1 0 1.9-.6 2.4-1.4l2.6 1.1z"/></svg>`,
+  csharp:`<svg viewBox="0 0 32 32"><path fill="#9B4F96" d="M28 23l-1 .6-11 6.3c-.4.2-1 .2-1.4 0L4 23.6c-.4-.2-.7-.7-.7-1.2V10c0-.5.3-1 .7-1.2L15 2.5c.4-.2 1-.2 1.4 0l11 6.3c.4.2.7.7.7 1.2v12.4c0 .2-.1.4-.2.6z"/><path fill="#fff" d="M21 19c-1 1.7-2.9 2.9-5 2.9-3.3 0-5.9-2.6-5.9-5.9S12.7 10 16 10c2.2 0 4.1 1.2 5 2.9l-2.6 1.5c-.5-.8-1.4-1.4-2.4-1.4-1.6 0-2.9 1.3-2.9 2.9 0 1.6 1.3 2.9 2.9 2.9 1 0 1.9-.6 2.4-1.4l2.6 1.1z"/></svg>`,
+  ruby:`<svg viewBox="0 0 32 32"><path fill="#A91401" d="M3 23l8 7h18L24 11l-7-3-3 1z"/><path fill="#FF4136" d="M11 30L3 23l5-15 11 7-1 9z"/><path fill="#CC1F00" d="M29 30l-5-19-13 5 5 14z"/></svg>`,
+  r_lang:`<svg viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="14" ry="11" fill="#276DC3"/><path fill="#fff" d="M9 9h7c3 0 5 1.5 5 4 0 2-1.5 3.3-3.5 3.7L22 22h-3.5l-3.5-5h-2v5H9V9zm4 6h2.5c1.5 0 2.5-.5 2.5-1.5S17 12 15.5 12H13v3z"/></svg>`,
+  bash:`<svg viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="20" rx="3" fill="#0a0a14" stroke="#39ff8a" stroke-width="1.5"/><path fill="none" stroke="#39ff8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 13l4 3-4 3"/><line x1="14" y1="20" x2="22" y2="20" stroke="#39ff8a" stroke-width="2" stroke-linecap="round"/></svg>`,
+  pwsh:`<svg viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="20" rx="3" fill="#012456"/><path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 13l5 3-5 3"/><line x1="16" y1="20" x2="23" y2="20" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`,
+  git:`<svg viewBox="0 0 32 32"><path fill="#F05033" d="M30.6 14.6L17.4 1.4c-.8-.8-2-.8-2.8 0l-2.7 2.7 3.5 3.5c.8-.3 1.7-.1 2.4.5.6.6.8 1.6.5 2.4l3.4 3.4c.8-.3 1.7-.1 2.4.5 1 1 1 2.5 0 3.5s-2.5 1-3.5 0c-.7-.7-.8-1.7-.4-2.5l-3.2-3.2v8.3c.2.1.5.3.6.4 1 1 1 2.5 0 3.5s-2.5 1-3.5 0-1-2.5 0-3.5c.2-.2.5-.3.7-.4v-8.4c-.3-.1-.6-.3-.7-.4-.7-.7-.8-1.7-.4-2.5L9.6 5.5 1.4 13.6c-.8.8-.8 2 0 2.8l13.2 13.2c.8.8 2 .8 2.8 0L30.6 17.4c.8-.8.8-2 0-2.8z"/></svg>`,
+  github:`<svg viewBox="0 0 32 32"><path fill="#fff" d="M16 1C7.7 1 1 7.7 1 16c0 6.6 4.3 12.2 10.2 14.2.7.1 1-.3 1-.7v-2.6c-4.2.9-5-2-5-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.6 2.3 1.6 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.6-4-.2-.4-.7-2 .1-4.2 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.7-.5 1.3 0 2.5.2 3.7.5 2.8-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.7.1 4.2 1 1 1.6 2.4 1.6 4 0 5.7-3.5 7-6.8 7.4.5.5 1 1.4 1 2.7v4.1c0 .4.3.8 1 .7C26.7 28.2 31 22.6 31 16 31 7.7 24.3 1 16 1z"/></svg>`,
+  docker:`<svg viewBox="0 0 32 32"><path fill="#2496ED" d="M28.4 11.6c-.5-.4-1.7-.5-2.6-.4-.1-.8-.6-1.5-1.4-2.1l-.5-.3-.3.5c-.6.9-.8 2.4-.2 3.4-.3.2-.8.4-1.5.4H1.6C1.2 14.5 1.2 16 2 17.7c.7 1.5 2.1 2.6 4.7 2.7H22c2.6 0 5-1.5 6.4-4.4 1.4 0 2.8-.5 3.5-2 .1-.1-.4-.4-.4-.4-1.5-1-2.6-.6-3-.5l-.1-1.5z"/><rect x="3" y="11" width="3" height="3" fill="#2496ED"/><rect x="7" y="11" width="3" height="3" fill="#2496ED"/><rect x="11" y="11" width="3" height="3" fill="#2496ED"/><rect x="15" y="11" width="3" height="3" fill="#2496ED"/><rect x="7" y="7" width="3" height="3" fill="#2496ED"/><rect x="11" y="7" width="3" height="3" fill="#2496ED"/><rect x="11" y="3" width="3" height="3" fill="#2496ED"/><rect x="15" y="7" width="3" height="3" fill="#2496ED"/></svg>`,
+  linux:`<svg viewBox="0 0 32 32"><path fill="#000" d="M16 2c-2.6 0-4.7 2.3-4.7 5.2 0 .6.1 1.2.2 1.7-.6.5-1.1 1.1-1.5 1.7-.7 1.1-1 2.4-1.4 3.7-.4 1.3-.8 2.6-1.6 3.6-.6.7-1.2 1.4-1.5 2.3-.3.9-.2 2 .5 2.7.4.4.9.6 1.4.7-.3.5-.5 1.1-.5 1.7 0 1.6 1.2 2.7 2.7 3 .9.2 1.8.1 2.7-.1 1 .9 2.4 1.5 3.8 1.5s2.8-.6 3.8-1.5c.9.2 1.8.3 2.7.1 1.5-.3 2.7-1.4 2.7-3 0-.6-.2-1.2-.5-1.7.5-.1 1-.3 1.4-.7.7-.7.8-1.8.5-2.7-.3-.9-.9-1.6-1.5-2.3-.8-1-1.2-2.3-1.6-3.6-.4-1.3-.7-2.6-1.4-3.7-.4-.6-.9-1.2-1.5-1.7.1-.5.2-1.1.2-1.7C20.7 4.3 18.6 2 16 2z"/><ellipse cx="13.5" cy="8" rx="1.2" ry="1.6" fill="#fff"/><ellipse cx="18.5" cy="8" rx="1.2" ry="1.6" fill="#fff"/><circle cx="13.7" cy="8.3" r=".6" fill="#000"/><circle cx="18.7" cy="8.3" r=".6" fill="#000"/><path fill="#FFC107" d="M14 12c0 1 .9 1.5 2 1.5s2-.5 2-1.5-.9-1-2-1-2 0-2 1z"/></svg>`,
+  fedora:`<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#294172"/><path fill="#fff" d="M19 8c-2.8 0-5 2.2-5 5v4h-3v3h3v8h3v-8h3v-3h-3v-4c0-1.1.9-2 2-2h2V8h-2z"/></svg>`,
+  mint:`<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#86BE43"/><path fill="#fff" d="M9 10h4c1 0 2 .5 2 2v3h2v-3c0-1.5 1-2 2-2h4c1 0 2 1 2 2v8c0 1-.5 2-2 2h-2v-7c0-.5-.5-.5-.5 0v7H10c-1 0-2-.5-2-2v-8c0-1 .5-2 1-2z"/></svg>`,
+  ubuntu:`<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#E95420"/><circle cx="9" cy="16" r="2.5" fill="#fff"/><circle cx="20" cy="9" r="2.5" fill="#fff"/><circle cx="20" cy="23" r="2.5" fill="#fff"/><circle cx="16" cy="16" r="4.5" fill="none" stroke="#fff" stroke-width="1.5"/></svg>`,
+  windows:`<svg viewBox="0 0 32 32"><path fill="#0078D4" d="M2 5l11.5-1.6V15H2zm0 11h11.5v11.6L2 26zM15 3.2L30 1v14H15zm0 11.8h15v14L15 26.8z"/></svg>`,
+  cisco:`<svg viewBox="0 0 32 32"><g fill="#1BA0D7"><rect x="3" y="13" width="2" height="6"/><rect x="6" y="11" width="2" height="10"/><rect x="9" y="9" width="2" height="14"/><rect x="12" y="11" width="2" height="10"/><rect x="15" y="13" width="2" height="6"/><rect x="18" y="11" width="2" height="10"/><rect x="21" y="9" width="2" height="14"/><rect x="24" y="11" width="2" height="10"/><rect x="27" y="13" width="2" height="6"/></g></svg>`,
+  vmware:`<svg viewBox="0 0 32 32"><g fill="#717074"><rect x="2" y="11" width="3" height="10"/><rect x="6" y="11" width="3" height="10"/><rect x="10" y="11" width="3" height="10"/></g><rect x="14" y="11" width="3" height="10" fill="#0091DA"/><rect x="18" y="11" width="3" height="10" fill="#717074"/><path d="M22 11h6c1 0 1 1 1 2v6c0 1 0 2-1 2h-6V11z" fill="#717074"/></svg>`,
+  premiere:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="3" fill="#2A0635"/><path fill="#9999FF" d="M9 9h6c3 0 5 2 5 5s-2 5-5 5h-3v4H9V9zm3 7h2c1 0 2-1 2-2s-1-2-2-2h-2v4z"/></svg>`,
+  photoshop:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="3" fill="#001E36"/><path fill="#31A8FF" d="M7 9h6.5c3 0 4.5 2 4.5 4.5S16.5 18 13.5 18H10v5H7V9zm3 6h3c1 0 2-.5 2-1.5S14 12 13 12h-3v3z"/></svg>`,
+  aftereffects:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="3" fill="#00005B"/><path fill="#9999FF" d="M9 9l4 14h-2.5l-.8-3H6l-.8 3H3l4-14h2zm-2 4l-1.3 5h3L7.5 13zm9 8.7c-.7.3-1.5.5-2.5.5-2.5 0-3.7-1.5-3.7-3.7s1.3-4 3.5-4 3 1.7 3 3.5v.9h-4.5c.1 1.4.7 1.9 2 1.9.8 0 1.5-.2 2.2-.5v1.4z"/></svg>`,
+  animate:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="3" fill="#330000"/><path fill="#FF6B45" d="M16 9l5 14h-2.5l-1-3h-3.5l-1 3H10l5-14h1zm-1 4l-1.5 5h3L15 13z"/></svg>`,
+  illustrator:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="3" fill="#330000"/><path fill="#FF9A00" d="M14 9l5 14h-3l-1-3h-4l-1 3H7l5-14h2zm-1 4l-1.5 5h3L13 13zm9 0h2v10h-2V13zm1-3.5c.7 0 1.3.6 1.3 1.3s-.6 1.3-1.3 1.3-1.3-.6-1.3-1.3.6-1.3 1.3-1.3z"/></svg>`,
+  excel:`<svg viewBox="0 0 32 32"><path fill="#107C41" d="M19 5L4 8v16l15 3V5z"/><path fill="#fff" d="M7 12h2.3l1.5 2.7L12.4 12h2.3l-2.5 4 2.5 4h-2.3l-1.6-2.8L9.3 20H7l2.5-4z"/><path fill="#185C37" d="M19 8h11v16H19z"/><path fill="#21A464" d="M19 11h11v3H19zm0 4h11v3H19zm0 4h11v3H19z"/></svg>`,
+  office:`<svg viewBox="0 0 32 32"><path fill="#EA3E23" d="M5 7l13-4v26L5 25z"/><path fill="#FFB900" d="M5 14l13-4v12L5 18z"/><rect x="20" y="6" width="9" height="20" fill="#0078D4" rx="1"/></svg>`,
+  powerbi:`<svg viewBox="0 0 32 32"><rect x="6" y="14" width="6" height="14" fill="#F2C811"/><rect x="13" y="9" width="6" height="19" fill="#E8A22D"/><rect x="20" y="4" width="6" height="24" fill="#C8862E"/></svg>`,
+  unity:`<svg viewBox="0 0 32 32"><path fill="#000" d="M16 2L4 9v14l12 7 12-7V9L16 2zm0 3l9 5v10l-9 5-9-5V10l9-5z"/><path fill="#000" d="M11 11l5 3-5 3v-6zm10 0v6l-5-3 5-3zm-5 4l-5 3 5 3 5-3-5-3z"/></svg>`,
+  android:`<svg viewBox="0 0 32 32"><path fill="#3DDC84" d="M21.5 6.6l1.6-2.7c.1-.2 0-.4-.2-.5-.2-.1-.4 0-.5.2L20.7 6.3c-1.5-.6-3.1-1-4.7-1s-3.2.4-4.7 1L9.6 3.6c-.1-.2-.3-.3-.5-.2-.2.1-.3.3-.2.5l1.6 2.7C7.8 8.2 6 11 6 14h20c0-3-1.8-5.8-4.5-7.4zM11.5 11.3c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9zm9 0c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9z"/><path fill="#3DDC84" d="M6 15v9c0 1.1.9 2 2 2h1v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3h2v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3h1c1.1 0 2-.9 2-2v-9H6zM4 15c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-6c0-.8-.7-1.5-1.5-1.5zm24 0c-.8 0-1.5.7-1.5 1.5v6c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-6c0-.8-.7-1.5-1.5-1.5z"/></svg>`,
+  flutter:`<svg viewBox="0 0 32 32"><path fill="#54C5F8" d="M19 2L4 17l4 4L26 2H19zm-3 13l-7 7 7 7h7l-7-7 7-7H16z"/><path fill="#01589B" d="M16 22l4 4 6-6-4-4z"/><path fill="#0175B7" d="M16 22l4 4h6l-4-4z"/></svg>`,
+  swift:`<svg viewBox="0 0 32 32"><defs><linearGradient id="sw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FA7343"/><stop offset="1" stop-color="#F05138"/></linearGradient></defs><rect x="2" y="2" width="28" height="28" rx="6" fill="url(#sw)"/><path fill="#fff" d="M22.5 21c-3-2-6.5-3.5-9.5-7 1.5 4 5 6 6 7-3 .5-6-1-9-3 1 3 5 6 9 6 3 0 5.5-1.5 6-2 .5-.5 1.5-1.5 2-3-.5 1-2 2-4.5 2 1.5-1 2.5-3 3-5-.5 2-2.5 3-3 4z"/></svg>`,
+  kotlin:`<svg viewBox="0 0 32 32"><defs><linearGradient id="kt" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0B7EFE"/><stop offset=".5" stop-color="#9C2BFF"/><stop offset="1" stop-color="#FF4F19"/></linearGradient></defs><path fill="url(#kt)" d="M2 2h28v28H2z M2 2L16 2 2 16z M16 2L30 16 16 30 2 30 2 16z"/><path fill="url(#kt)" d="M2 2h14L2 16zm14 0L2 16v14h14l14-14z"/></svg>`,
+  shield:`<svg viewBox="0 0 32 32"><path fill="none" stroke="#39ff8a" stroke-width="1.8" d="M16 3l11 4v9c0 7-5 11-11 13C5 27 5 23 5 16V7l11-4z"/><path fill="none" stroke="#39ff8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 16l3 3 7-7"/></svg>`,
+  hardware:`<svg viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="2" fill="none" stroke="#a784ff" stroke-width="1.5"/><rect x="10" y="10" width="12" height="12" rx="1" fill="#a784ff" opacity=".4"/><rect x="13" y="13" width="6" height="6" fill="#a784ff"/><line x1="6" y1="11" x2="3" y2="11" stroke="#a784ff" stroke-width="1.5"/><line x1="6" y1="16" x2="3" y2="16" stroke="#a784ff" stroke-width="1.5"/><line x1="6" y1="21" x2="3" y2="21" stroke="#a784ff" stroke-width="1.5"/><line x1="29" y1="11" x2="26" y2="11" stroke="#a784ff" stroke-width="1.5"/><line x1="29" y1="16" x2="26" y2="16" stroke="#a784ff" stroke-width="1.5"/><line x1="29" y1="21" x2="26" y2="21" stroke="#a784ff" stroke-width="1.5"/><line x1="11" y1="3" x2="11" y2="6" stroke="#a784ff" stroke-width="1.5"/><line x1="16" y1="3" x2="16" y2="6" stroke="#a784ff" stroke-width="1.5"/><line x1="21" y1="3" x2="21" y2="6" stroke="#a784ff" stroke-width="1.5"/></svg>`,
+  network:`<svg viewBox="0 0 32 32"><circle cx="16" cy="6" r="3" fill="#22d3ee"/><circle cx="6" cy="20" r="3" fill="#22d3ee"/><circle cx="26" cy="20" r="3" fill="#22d3ee"/><circle cx="16" cy="26" r="2.5" fill="#22d3ee"/><line x1="16" y1="9" x2="6" y2="17" stroke="#22d3ee" stroke-width="1.5"/><line x1="16" y1="9" x2="26" y2="17" stroke="#22d3ee" stroke-width="1.5"/><line x1="6" y1="22" x2="14" y2="25" stroke="#22d3ee" stroke-width="1.5"/><line x1="26" y1="22" x2="18" y2="25" stroke="#22d3ee" stroke-width="1.5"/></svg>`,
+  ai:`<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="none" stroke="#a784ff" stroke-width="1.5"/><circle cx="16" cy="10" r="2" fill="#a784ff"/><circle cx="10" cy="18" r="2" fill="#22d3ee"/><circle cx="22" cy="18" r="2" fill="#22d3ee"/><circle cx="13" cy="22" r="1.5" fill="#a784ff"/><circle cx="19" cy="22" r="1.5" fill="#a784ff"/><line x1="16" y1="10" x2="10" y2="18" stroke="#a784ff" stroke-width="1"/><line x1="16" y1="10" x2="22" y2="18" stroke="#a784ff" stroke-width="1"/><line x1="10" y1="18" x2="13" y2="22" stroke="#22d3ee" stroke-width="1"/><line x1="22" y1="18" x2="19" y2="22" stroke="#22d3ee" stroke-width="1"/></svg>`,
+  chatgpt:`<svg viewBox="0 0 32 32"><path fill="#10A37F" d="M28.7 13.4c.7-2.1.4-4.4-.7-6.3-1.7-2.9-5.1-4.4-8.4-3.6-1.5-1.6-3.6-2.6-5.8-2.5-3.4 0-6.4 2.2-7.4 5.4-2.2.4-4 1.8-5.1 3.7-1.7 3-1.3 6.7 1 9.2-.7 2.1-.4 4.4.7 6.3 1.7 2.9 5.1 4.4 8.4 3.6 1.5 1.6 3.6 2.6 5.8 2.5 3.4 0 6.4-2.2 7.4-5.4 2.2-.4 4-1.8 5.1-3.7 1.7-3 1.3-6.7-1-9.2zm-12 17.5c-1.4 0-2.7-.5-3.8-1.4l.2-.1 6.3-3.6c.3-.2.5-.5.5-.9v-8.8l2.7 1.5v7.3c0 3.3-2.7 6-6 6zm-12.9-5.5c-.7-1.2-1-2.5-.8-3.9l.2.1 6.3 3.6c.3.2.7.2 1 0l7.7-4.4v3.1L12 27.6c-2.9 1.7-6.6.7-8.2-2.2zm-1.7-13.9c.7-1.2 1.7-2.1 2.9-2.6V16c0 .4.2.7.5.9l7.7 4.4-2.7 1.5-6.4-3.6c-2.9-1.6-3.9-5.3-2.2-8.2l.2-.5zM26.7 14l-7.7-4.4 2.7-1.5 6.4 3.6c2.9 1.7 3.9 5.3 2.2 8.2-.7 1.2-1.7 2.1-2.9 2.6V16c0-.4-.2-.7-.5-.9zm2.7-4l-.2-.1-6.3-3.6c-.3-.2-.7-.2-1 0L14.2 11V7.9l6.4-3.7c2.9-1.7 6.5-.7 8.2 2.2.7 1.2 1 2.5.8 3.9zM12.7 15l-2.7-1.5V6.2c0-3.3 2.7-6 6-6 1.4 0 2.7.5 3.8 1.4l-.2.1-6.3 3.6c-.3.2-.5.5-.5.9V15zm1.5-3.2l3.4-2 3.4 2v3.9l-3.4 2-3.4-2v-3.9z"/></svg>`,
+  claudeai:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="6" fill="#CC785C"/><path fill="#fff" d="M11.5 8.5l-3.5 11h2.4l.7-2.5h3.7l.7 2.5h2.4l-3.5-11h-2.9zm.4 6.5l1.1-3.8 1.1 3.8h-2.2zm12.6-6.5h-3.6c-.6 0-1 .4-1 1v9c0 .6.4 1 1 1h3.6c2.7 0 4.4-2.2 4.4-5.5s-1.7-5.5-4.4-5.5zm0 8.6h-2v-6.2h2c1.6 0 2.4 1.2 2.4 3.1s-.8 3.1-2.4 3.1z"/></svg>`,
+  codex:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="6" fill="#0a0a14" stroke="#39ff8a" stroke-width="1.5"/><text x="16" y="22" font-family="monospace" font-size="12" font-weight="bold" fill="#39ff8a" text-anchor="middle">&lt;/&gt;</text></svg>`,
+  elevenlabs:`<svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="4" fill="#000"/><rect x="9" y="9" width="3" height="14" fill="#fff"/><rect x="14" y="6" width="3" height="20" fill="#fff"/><rect x="19" y="11" width="3" height="10" fill="#fff"/></svg>`,
+  kling:`<svg viewBox="0 0 32 32"><defs><linearGradient id="kling" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00d4ff"/><stop offset="1" stop-color="#7a5cff"/></linearGradient></defs><rect x="2" y="2" width="28" height="28" rx="6" fill="url(#kling)"/><path fill="#fff" d="M11 9v14h2.5v-5l1-1 4 6h3l-5.3-7.7L21 9h-2.8l-4.7 5.5V9z"/></svg>`,
+};
+
+/* ---------- SKILLS DATA ---------- */
+const SKILLS = [
+  // AI
+  {n:"ChatGPT / GPT-4",   icon:"chatgpt",      lvl:"adv", cat:"ai",     lvlKey:"lvl_adv"},
+  {n:"Claude / Claude Code",icon:"claudeai",   lvl:"adv", cat:"ai",     lvlKey:"lvl_adv"},
+  {n:"OpenAI Codex",      icon:"codex",        lvl:"adv", cat:"ai",     lvlKey:"lvl_adv"},
+  {n:"ElevenLabs (voice)",icon:"elevenlabs",   lvl:"adv", cat:"ai",     lvlKey:"lvl_adv"},
+  {n:"Kling AI (video)",  icon:"kling",        lvl:"adv", cat:"ai",     lvlKey:"lvl_adv"},
+  {n:"AI / ML basics",    icon:"ai",           lvl:"int", cat:"ai",     lvlKey:"lvl_int"},
+  // Languages
+  {n:"Python",            icon:"python",       lvl:"int", cat:"lang",   lvlKey:"lvl_int"},
+  {n:"PHP",               icon:"php",          lvl:"int", cat:"lang",   lvlKey:"lvl_int"},
+  {n:"Java",              icon:"java",         lvl:"beg", cat:"lang",   lvlKey:"lvl_beg"},
+  {n:"C++",               icon:"cpp",          lvl:"beg", cat:"lang",   lvlKey:"lvl_beg"},
+  {n:"C#",                icon:"csharp",       lvl:"beg", cat:"lang",   lvlKey:"lvl_beg"},
+  {n:"Ruby",              icon:"ruby",         lvl:"beg", cat:"lang",   lvlKey:"lvl_beg"},
+  {n:"R",                 icon:"r_lang",       lvl:"beg", cat:"lang",   lvlKey:"lvl_beg"},
+  // Web
+  {n:"HTML5",             icon:"html",         lvl:"adv", cat:"web",    lvlKey:"lvl_adv"},
+  {n:"CSS3",              icon:"css",          lvl:"adv", cat:"web",    lvlKey:"lvl_adv"},
+  {n:"JavaScript",        icon:"js",           lvl:"int", cat:"web",    lvlKey:"lvl_int"},
+  // DB / Data
+  {n:"SQL / MySQL",       icon:"sql",          lvl:"adv", cat:"db",     lvlKey:"lvl_adv"},
+  {n:"Power BI",          icon:"powerbi",      lvl:"adv", cat:"db",     lvlKey:"lvl_adv"},
+  // Systems
+  {n:"Linux Fedora",      icon:"fedora",       lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Linux Mint",        icon:"mint",         lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Ubuntu",            icon:"ubuntu",       lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Ubuntu Server",     icon:"ubuntu",       lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Linux (general)",   icon:"linux",        lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Windows Server",    icon:"windows",      lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Bash / Shell",      icon:"bash",         lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"PowerShell",        icon:"pwsh",         lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Docker",            icon:"docker",       lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"VMware / VBox",     icon:"vmware",       lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  {n:"Git / GitHub",      icon:"git",          lvl:"adv", cat:"sys",    lvlKey:"lvl_adv"},
+  // Hardware
+  {n:"Hardware / Składanie PC", icon:"hardware",lvl:"adv",cat:"hw",     lvlKey:"lvl_adv"},
+  {n:"Sieci LAN/WLAN",    icon:"network",      lvl:"adv", cat:"hw",     lvlKey:"lvl_adv"},
+  {n:"Cisco / CCNA",      icon:"cisco",        lvl:"int", cat:"hw",     lvlKey:"lvl_int"},
+  // Security
+  {n:"Cybersecurity",     icon:"shield",       lvl:"int", cat:"sec",    lvlKey:"lvl_int"},
+  // Design / Video
+  {n:"Premiere Pro",      icon:"premiere",     lvl:"adv", cat:"design", lvlKey:"lvl_adv"},
+  {n:"Photoshop",         icon:"photoshop",    lvl:"int", cat:"design", lvlKey:"lvl_int"},
+  {n:"Illustrator",       icon:"illustrator",  lvl:"beg", cat:"design", lvlKey:"lvl_beg"},
+  {n:"After Effects",     icon:"aftereffects", lvl:"beg", cat:"design", lvlKey:"lvl_beg"},
+  {n:"Adobe Animate",     icon:"animate",      lvl:"beg", cat:"design", lvlKey:"lvl_beg"},
+  // Game
+  {n:"Unity",             icon:"unity",        lvl:"beg", cat:"game",   lvlKey:"lvl_beg"},
+  // Mobile
+  {n:"Android (Kotlin)",  icon:"android",      lvl:"beg", cat:"mobile", lvlKey:"lvl_beg"},
+  {n:"Flutter",           icon:"flutter",      lvl:"beg", cat:"mobile", lvlKey:"lvl_beg"},
+  {n:"Swift / iOS",       icon:"swift",        lvl:"beg", cat:"mobile", lvlKey:"lvl_beg"},
+  {n:"Kotlin",            icon:"kotlin",       lvl:"beg", cat:"mobile", lvlKey:"lvl_beg"},
+  // Office
+  {n:"Excel",             icon:"excel",        lvl:"int", cat:"office", lvlKey:"lvl_int"},
+  {n:"MS Office 365",     icon:"office",       lvl:"adv", cat:"office", lvlKey:"lvl_adv"},
+];
+
+/* ---------- I18N ---------- */
+const I18N = {
+  pl:{
+    nav_home:"Start", nav_about:"O mnie", nav_skills:"Skille", nav_exp:"Doświadczenie", nav_projects:"Projekty", nav_contact:"Kontakt",
+    hero_tag:"Kraków · Remote · Otwarty na rozwój w IT",
+    hero_hi:"Cześć, jestem", role:"IT · FinTech · AI",
+    hero_lede:"Technik Informatyk (EE.08 + EE.09), pracownik Bank Pekao S.A. na infolinii klienta firmowego, student cyberbezpieczeństwa i analityki danych. Pasjonat AI, Linuksa, automatyzacji i tworzenia treści.",
+    hero_cta1:"Pobierz CV", hero_cta2:"Zobacz projekty", contact_me:"Kontakt",
+    about_kicker:"o mnie", about_h:"Technik IT,", about_h2:"student, twórca",
+    about_h3:"Technik Informatyk z dyplomami EE.08 + EE.09 i głową w chmurach AI.",
+    about_p1:"Skończyłem technikum informatyczne w Bochni — zdałem pełne kwalifikacje EE.08 (montaż i eksploatacja systemów komputerowych, urządzeń peryferyjnych i sieci) oraz EE.09 (programowanie, tworzenie i administrowanie stronami internetowymi i bazami danych). Składam komputery, instaluję systemy, konfiguruję sieci, piszę w PHP/SQL/Pythonie, robię dashboardy w Excelu i edytuję wideo w Premiere.",
+    about_p2:"Na co dzień pracuję w Banku Pekao S.A. jako Senior / Główny Specjalista ds. obsługi klienta firmowego (infolinia) — to nie jest jeszcze rola IT, ale daje mi solidną wiedzę o systemach bankowych (Pekao24, PeoBiz 2.0, PeoPay), procedurach bezpieczeństwa i pracy w środowisku regulowanym. Pochodzę z Krakowa, studiuję zaocznie w WSKZ Wrocław — uczelnia daje mi przestrzeń do rozwoju w tym, co kocham: cyberbezpieczeństwo (3. semestr) i bazy danych + analityka biznesowa (2. semestr).",
+    about_p3:"Jestem samoukiem — szybko łapię nowe rzeczy, wystarczy że mnie raz przeszkolisz i lecę. Wbijam mocno w AI (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linuxa, automatyzację. Kiedyś próbowałem robić AI-content na YouTube — nie wyszło, ale zostały mi narzędzia, warsztat i dobry sznyt do storytellingu. Posiadam orzeczenie o stopniu niepełnosprawności (II grupa) — w pracy biurowej / IT bez przeszkód. Cel: IT w bankowości, security ops albo FinTech.",
+    stat_years:"Lat w Pekao", stat_tech:"Technologii", stat_quals:"Kwalifikacje EE", stat_langs:"Języków UI",
+    badge_title:"EE.08 · EE.09<br>Cybersecurity Student",
+    skills_kicker:"stack", skills_h:"Stos", skills_h2:"technologiczny",
+    skills_p:"Języki, frameworki, AI tools, systemy, hardware i programy graficzne. Filtr klikalny — wybierz kategorię.",
+    cat_all:"Wszystko", cat_ai:"AI Tools", cat_lang:"Języki", cat_web:"Web", cat_db:"Bazy / Data", cat_sys:"Systemy / DevOps", cat_hw:"Hardware / Sieci", cat_sec:"Cybersecurity", cat_design:"Design / Video", cat_game:"Game Dev", cat_mobile:"Mobile", cat_office:"Office",
+    lang_kicker:"języki obce", lang_h:"Języki", lang_h2:"komunikacji", lang_p:"Codzienna obsługa klientów w PL i EN, reszta na poziomie podstawowym i w trakcie nauki.",
+    lang_pl:"Polski", lang_en:"Angielski", lang_de:"Niemiecki", lang_es:"Hiszpański", lang_fr:"Francuski",
+    lang_native:"Native", lang_learn:"(uczę się do certyfikatu)", lang_learn2:"(uczę się)", lang_start:"(zaczynam)", lang_start2:"(zaczynam)",
+    hob_kicker:"poza pracą", hob_h:"Po godzinach,", hob_h2:"poza klawiaturą",
+    hob_p:"Bo człowiek to nie tylko stack technologii. Oto co mnie napędza poza ekranem.",
+    hob1_h:"¡Hala Madrid!", hob1_p:"Kibic Realu Madryt od lat — Los Blancos, La Décima, Bernabéu. Mecz, kawa, dobre towarzystwo.",
+    hob2_h:"Rozwój osobisty", hob2_p:"Codzienna praca nad sobą — nawyki, czytanie, dyscyplina. Lubię motywować siebie i innych.",
+    hob3_h:"Eko-mindset", hob3_p:"Recykling, świadome wybory, segregacja — drobne rzeczy które robią różnicę.",
+    hob4_h:"Gaming (RPG, strategie)", hob4_p:"Gry RPG i strategie rozwijają analityczne myślenie i pracę zespołową w sieci.",
+    hob5_h:"AI i FinTech", hob5_p:"Codzienna obserwacja trendów AI/ML, FinTechu i wpływu nowych technologii na finanse.",
+    hob6_h:"Historia", hob6_p:"Polska i europejska historia — dokumenty, książki, lekcje z przeszłości dla dzisiaj.",
+    lvl_adv:"Zaawansowany", lvl_int:"Średniozaawansowany", lvl_beg:"Początkujący",
+    exp_kicker:"kariera", exp_h:"Doświadczenie", exp_h2:"i edukacja",
+    now:"obecnie", now2:"obecnie", now3:"obecnie",
+    exp1_role:"Senior / Główny Specjalista ds. obsługi klienta firmowego",
+    exp1_b1:"Wsparcie klientów korporacyjnych w bankowości online (Pekao24, PeoBiz 2.0, PeoPay)",
+    exp1_b2:"Wielojęzyczna obsługa (PL, EN) — telefon, e-mail, czat",
+    exp1_b3:"Pierwsza linia helpdesku — diagnoza i rozwiązywanie problemów technicznych",
+    exp1_b4:"Onboarding i mentoring nowych pracowników",
+    exp1_b5:"Pełna zgodność z procedurami bezpieczeństwa danych",
+    exp2_role:"Stażysta IT",
+    exp2_b1:"Diagnostyka i kalibracja sprzętu komputerowego",
+    exp2_b2:"Składanie komputerów, wymiana podzespołów, instalacja systemów",
+    edu1:"Cyberbezpieczeństwo", edu1_where:"Wrocław — studia, 3. semestr", edu1_b:"Ethical hacking, bezpieczeństwo sieci, ochrona danych, kryptografia, OSINT",
+    edu2:"Bazy danych, Data Science i analityka biznesowa", edu2_where:"Wrocław — studia, 2. semestr", edu2_b:"SQL, Python, R, modele analityczne, Power BI, statystyka, ML basics",
+    edu3:"Technik Informatyk", edu3_where:"Bochnia — wykształcenie zawodowe",
+    edu3_b1:"<b>EE.08</b> — montaż i eksploatacja systemów komputerowych, urządzeń peryferyjnych i sieci",
+    edu3_b2:"<b>EE.09</b> — programowanie, tworzenie i administrowanie stronami internetowymi i bazami danych",
+    edu3_b3:"Hardware, BIOS/UEFI, LAN/WLAN, instalacja Windows/Linux, PHP, MySQL, HTML/CSS/JS",
+    edu4:"Certyfikaty Udemy", edu4_where:"7 ukończonych szkoleń online",
+    proj_kicker:"projekty", proj_h:"Wybrane", proj_h2:"projekty",
+    proj_p:"Mix bankowych usprawnień, AI-contentu, skryptów i domowego laba. Niektóre wyszły, niektóre się sypnęły — wszystkich się nauczyłem.",
+    proj_ai_h:"AI YouTube Lab (RIP)",
+    proj_ai_p:"Próba kanału z AI-contentem: scenariusze w ChatGPT/Claude, generacja głosów w ElevenLabs, wideo w Kling AI, montaż w Premiere. Wyszło średnio — ale kupę wiedzy zostało.",
+    proj1_h:"Banking Helpdesk Workflow",
+    proj1_p:"Optymalizacja procesów wsparcia dla klientów firmowych Pekao — szybsza reakcja, lepsza dokumentacja zgłoszeń, mniej eskalacji.",
+    proj2_h:"Python Automation Toolkit",
+    proj2_p:"Skrypty do przetwarzania danych, raportowania i automatyzacji — pandas, openpyxl, REST API, web scraping.",
+    proj_pc_h:"PC Builds & Hardware",
+    proj_pc_p:"Składanie komputerów stacjonarnych, dobór podzespołów, diagnostyka, wymiana hardware'u, instalacja Windows/Linux. Spadek po EE.08.",
+    proj5_h:"Home Cyber Lab",
+    proj5_p:"Lab w VirtualBox/VMware: Kali, Fedora, Mint, Ubuntu Server, Windows Server — pentesty, hardening, Cisco Packet Tracer, CCNA.",
+    proj7_h:"Linux Daily Driver",
+    proj7_p:"Codzienna praca na Fedorze, Ubuntu i Linux Mint — bash, systemd, dotfiles, automatyzacja, pipeline'y w terminalu.",
+    proj3_h:"Full-stack Web Apps",
+    proj3_p:"Aplikacje webowe z PHP + MySQL i czystym JS — projekty edukacyjne i osobiste z naciskiem na bezpieczeństwo.",
+    proj_unity_h:"Unity Game Prototypes",
+    proj_unity_p:"Pierwsze kroki w gamedevie — proste prototypy 2D/3D w Unity, C#, eksperymenty z mechaniką.",
+    proj9_h:"Excel / Power BI Dashboards",
+    proj9_p:"Arkusze, formuły, Power Query i wizualizacje BI — raporty, KPI, prognozy. Średnio-zaawansowany Excel, advanced Power BI.",
+    contact_kicker:"kontakt", contact_h:"Pogadajmy",
+    contact_p:"Otwarty na rolę w IT/security/data, FinTech, freelance video AI i ciekawą współpracę.",
+    chat_title:"AI Asystent Pawła", chat_ph:"Zapytaj cokolwiek...", ai_sub:"● Online · trenowany na profilu Pawła",
+    f_name:"Imię i nazwisko", f_email:"E-mail", f_msg:"Wiadomość", f_send:"Wyślij wiadomość →", f_or:"lub bezpośrednio:", f_hint:"↑ wiadomość trafi prosto na mojego maila",
+    ct_email_l:"E-mail · najlepszy sposób", ct_gh_l:"GitHub · projekty i kod", ct_phone_l:"Telefon · pon–pt, 9–17",
+    ct_loc_l:"Lokalizacja", ct_loc_v:"Kraków, PL · Remote OK",
+    ct_status_l:"Status", ct_status_v:"Otwarty na nowe wyzwania",
+    ct_lang_l:"Komunikacja", ct_lang_v:"PL · EN · DE · FR · ES",
+    back_top:"↑ Powrót do góry", rights:"Wszystkie prawa zastrzeżone"
+  },
+  en:{
+    nav_home:"Home", nav_about:"About", nav_skills:"Skills", nav_exp:"Experience", nav_projects:"Projects", nav_contact:"Contact",
+    hero_tag:"Kraków · Remote · Open to grow in IT",
+    hero_hi:"Hi, I'm", role:"IT · FinTech · AI",
+    hero_lede:"IT Technician (EE.08 + EE.09), Bank Pekao S.A. corporate-customer hotline specialist, Cybersecurity & Data Analytics student. AI, Linux, automation and content creation enthusiast.",
+    hero_cta1:"Download CV", hero_cta2:"View projects", contact_me:"Contact",
+    about_kicker:"about", about_h:"IT technician,", about_h2:"student, creator",
+    about_h3:"IT Technician with EE.08 + EE.09 diplomas and a head full of AI.",
+    about_p1:"I graduated from IT technical school in Bochnia with full EE.08 (assembly and operation of computer systems, peripherals and networks) and EE.09 (programming, building and administering websites and databases) qualifications. I build PCs, install OSes, configure networks, write PHP/SQL/Python, build Excel dashboards and edit video in Premiere.",
+    about_p2:"My day job is at Bank Pekao S.A. as a Senior / Lead Corporate Customer Hotline Specialist — not yet an IT role, but it gives me solid hands-on knowledge of banking systems (Pekao24, PeoBiz 2.0, PeoPay), security procedures and working in a regulated environment. I'm from Kraków and I study part-time at WSKZ Wrocław — the university lets me grow in what I love: Cybersecurity (3rd semester) and Databases & Business Analytics (2nd semester).",
+    about_p3:"I'm self-taught — I pick up new things fast, train me once and I run with it. I'm deep into AI (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linux and automation. I once tried doing AI content on YouTube — didn't pop, but the toolset, workflow and storytelling instincts stayed. I hold a Polish disability certificate (group II) — no impact on office / IT work. Goal: IT in banking, security ops or FinTech.",
+    stat_years:"Years at Pekao", stat_tech:"Technologies", stat_quals:"EE qualifications", stat_langs:"UI languages",
+    badge_title:"EE.08 · EE.09<br>Cybersecurity Student",
+    skills_kicker:"stack", skills_h:"Tech", skills_h2:"stack",
+    skills_p:"Languages, frameworks, AI tools, systems, hardware and design apps. Filter is clickable — pick a category.",
+    cat_all:"All", cat_ai:"AI Tools", cat_lang:"Languages", cat_web:"Web", cat_db:"DB / Data", cat_sys:"Systems / DevOps", cat_hw:"Hardware / Networks", cat_sec:"Cybersecurity", cat_design:"Design / Video", cat_game:"Game Dev", cat_mobile:"Mobile", cat_office:"Office",
+    lang_kicker:"foreign languages", lang_h:"Languages", lang_h2:"I speak",
+    lang_p:"Daily customer service in PL and EN, the rest at basic level and in progress.",
+    lang_pl:"Polish", lang_en:"English", lang_de:"German", lang_es:"Spanish", lang_fr:"French",
+    lang_native:"Native", lang_learn:"(working on the certificate)", lang_learn2:"(learning)", lang_start:"(starting)", lang_start2:"(starting)",
+    hob_kicker:"off the clock", hob_h:"Off-hours,", hob_h2:"off the keyboard",
+    hob_p:"Because a person is more than a tech stack. Here's what drives me beyond the screen.",
+    hob1_h:"¡Hala Madrid!", hob1_p:"Real Madrid fan for years — Los Blancos, La Décima, Bernabéu. Match, coffee, good company.",
+    hob2_h:"Personal growth", hob2_p:"Daily work on myself — habits, reading, discipline. I like motivating myself and others.",
+    hob3_h:"Eco mindset", hob3_p:"Recycling, conscious choices, segregation — small things that make a difference.",
+    hob4_h:"Gaming (RPG, strategy)", hob4_p:"RPGs and strategy games sharpen analytical thinking and online teamwork.",
+    hob5_h:"AI & FinTech", hob5_p:"Daily watch on AI/ML trends, FinTech and the impact of new tech on finance.",
+    hob6_h:"History", hob6_p:"Polish and European history — documentaries, books, lessons from the past for today.",
+    lvl_adv:"Advanced", lvl_int:"Intermediate", lvl_beg:"Beginner",
+    exp_kicker:"career", exp_h:"Experience", exp_h2:"& education",
+    now:"present", now2:"present", now3:"present",
+    exp1_role:"Senior Specialist · Corporate Customer Hotline",
+    exp1_b1:"Supporting corporate clients across online banking (Pekao24, PeoBiz 2.0, PeoPay)",
+    exp1_b2:"Multilingual service (PL, EN) — phone, email, chat",
+    exp1_b3:"First-line helpdesk — diagnosing and resolving technical issues",
+    exp1_b4:"Onboarding and mentoring new team members",
+    exp1_b5:"Full compliance with data security procedures",
+    exp2_role:"IT Trainee",
+    exp2_b1:"Diagnostics and calibration of computer hardware",
+    exp2_b2:"Building PCs, swapping components, installing operating systems",
+    edu1:"Cybersecurity", edu1_where:"Wrocław — university, 3rd semester", edu1_b:"Ethical hacking, network security, data protection, cryptography, OSINT",
+    edu2:"Databases, Data Science & Business Analytics", edu2_where:"Wrocław — university, 2nd semester", edu2_b:"SQL, Python, R, analytics, Power BI, statistics, ML basics",
+    edu3:"IT Technician", edu3_where:"Bochnia — vocational degree",
+    edu3_b1:"<b>EE.08</b> — assembly and operation of computer systems, peripherals and networks",
+    edu3_b2:"<b>EE.09</b> — programming, building and administering websites and databases",
+    edu3_b3:"Hardware, BIOS/UEFI, LAN/WLAN, Windows/Linux installs, PHP, MySQL, HTML/CSS/JS",
+    edu4:"Udemy certificates", edu4_where:"7 completed online trainings",
+    proj_kicker:"projects", proj_h:"Selected", proj_h2:"projects",
+    proj_p:"A mix of banking improvements, AI content, scripts and a home lab. Some worked, some flopped — learned from all.",
+    proj_ai_h:"AI YouTube Lab (RIP)",
+    proj_ai_p:"Tried an AI-content channel: scripts in ChatGPT/Claude, voices in ElevenLabs, video in Kling AI, edits in Premiere. Didn't blow up — but the toolbox stayed.",
+    proj1_h:"Banking Helpdesk Workflow",
+    proj1_p:"Improving support for Pekao corporate clients — faster response, better ticket docs, fewer escalations.",
+    proj2_h:"Python Automation Toolkit",
+    proj2_p:"Scripts for data processing, reporting and automation — pandas, openpyxl, REST APIs, scraping.",
+    proj_pc_h:"PC Builds & Hardware",
+    proj_pc_p:"Building desktops, picking parts, diagnostics, swapping hardware, OS installs. Inheritance from EE.08.",
+    proj5_h:"Home Cyber Lab",
+    proj5_p:"VirtualBox/VMware lab: Kali, Fedora, Mint, Ubuntu Server, Windows Server — pentests, hardening, Cisco Packet Tracer, CCNA.",
+    proj7_h:"Linux Daily Driver",
+    proj7_p:"Daily on Fedora, Ubuntu and Mint — bash, systemd, dotfiles, automation, terminal pipelines.",
+    proj3_h:"Full-stack Web Apps",
+    proj3_p:"Web apps in PHP + MySQL and vanilla JS — educational and personal, with a security focus.",
+    proj_unity_h:"Unity Game Prototypes",
+    proj_unity_p:"First steps in gamedev — simple 2D/3D prototypes in Unity, C#, mechanic experiments.",
+    proj9_h:"Excel / Power BI Dashboards",
+    proj9_p:"Sheets, formulas, Power Query and BI visuals — reports, KPIs, forecasts. Intermediate Excel, advanced Power BI.",
+    contact_kicker:"contact", contact_h:"Let's talk",
+    contact_p:"Open to roles in IT/security/data, FinTech, AI video freelance and interesting collabs.",
+    chat_title:"Paweł's AI Assistant", chat_ph:"Ask me anything...", ai_sub:"● Online · trained on Paweł's profile",
+    f_name:"Full name", f_email:"Email", f_msg:"Message", f_send:"Send message →", f_or:"or directly:", f_hint:"↑ message goes straight to my inbox",
+    ct_email_l:"Email · best way", ct_gh_l:"GitHub · projects and code", ct_phone_l:"Phone · Mon–Fri, 9–17",
+    ct_loc_l:"Location", ct_loc_v:"Kraków, PL · Remote OK",
+    ct_status_l:"Status", ct_status_v:"Open to new opportunities",
+    ct_lang_l:"Communication", ct_lang_v:"PL · EN · DE · FR · ES",
+    back_top:"↑ Back to top", rights:"All rights reserved"
+  },
+  fr:{
+    nav_home:"Accueil", nav_about:"À propos", nav_skills:"Skills", nav_exp:"Expérience", nav_projects:"Projets", nav_contact:"Contact",
+    hero_tag:"Cracovie · Remote · Ouvert à évoluer en IT",
+    hero_hi:"Bonjour, je suis", role:"IT · FinTech · IA",
+    hero_lede:"Technicien Informatique (EE.08 + EE.09), spécialiste hotline clients corporate à Bank Pekao S.A., étudiant en cybersécurité et analyse de données. Passionné d'IA, Linux, automatisation et création de contenu.",
+    hero_cta1:"Télécharger le CV", hero_cta2:"Voir les projets", contact_me:"Contact",
+    about_kicker:"à propos", about_h:"Technicien IT,", about_h2:"étudiant, créateur",
+    about_h3:"Technicien Informatique diplômé EE.08 + EE.09, la tête dans l'IA.",
+    about_p1:"J'ai terminé le lycée technique informatique à Bochnia — j'ai validé les qualifications EE.08 (montage et exploitation des systèmes informatiques, périphériques et réseaux) et EE.09 (programmation, création et administration de sites web et bases de données). Je monte des PC, j'installe des OS, je configure des réseaux, je code en PHP/SQL/Python, je fais des dashboards Excel et je monte de la vidéo dans Premiere.",
+    about_p2:"Au quotidien je travaille à Bank Pekao S.A. comme Senior Spécialiste hotline clients corporate — ce n'est pas encore un poste IT, mais ça me donne une connaissance solide des systèmes bancaires (Pekao24, PeoBiz 2.0, PeoPay), des procédures de sécurité et du travail en environnement régulé. Je viens de Cracovie et j'étudie en alternance à WSKZ Wrocław — l'université me laisse grandir dans ce que j'aime : Cybersécurité (3ème semestre) et Bases de données + Analyse business (2ème semestre).",
+    about_p3:"Je suis autodidacte — j'apprends vite, forme-moi une fois et je file. Je suis à fond dans l'IA (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linux et l'automatisation. J'ai voulu faire du contenu IA sur YouTube — ça n'a pas marché, mais le toolkit, le workflow et le storytelling sont restés. Je dispose d'une reconnaissance de handicap (groupe II en Pologne) — aucun impact sur le travail bureau / IT. Objectif : IT bancaire, security ops ou FinTech.",
+    stat_years:"Ans chez Pekao", stat_tech:"Technologies", stat_quals:"Qualifications EE", stat_langs:"Langues UI",
+    badge_title:"EE.08 · EE.09<br>Étudiant Cybersécurité",
+    skills_kicker:"stack", skills_h:"Stack", skills_h2:"technologique",
+    skills_p:"Langages, frameworks, outils IA, systèmes, hardware et apps de design. Filtre cliquable — choisis une catégorie.",
+    cat_all:"Tout", cat_ai:"Outils IA", cat_lang:"Langages", cat_web:"Web", cat_db:"BDD / Data", cat_sys:"Systèmes / DevOps", cat_hw:"Hardware / Réseaux", cat_sec:"Cybersécurité", cat_design:"Design / Vidéo", cat_game:"Game Dev", cat_mobile:"Mobile", cat_office:"Office",
+    lang_kicker:"langues étrangères", lang_h:"Langues", lang_h2:"que je parle",
+    lang_p:"Service client quotidien en PL et EN, le reste au niveau basique et en cours d'apprentissage.",
+    lang_pl:"Polonais", lang_en:"Anglais", lang_de:"Allemand", lang_es:"Espagnol", lang_fr:"Français",
+    lang_native:"Natif", lang_learn:"(en route vers le certificat)", lang_learn2:"(en cours)", lang_start:"(je commence)", lang_start2:"(je commence)",
+    hob_kicker:"hors travail", hob_h:"Hors heures,", hob_h2:"loin du clavier",
+    hob_p:"Une personne, ce n'est pas qu'une stack tech. Voici ce qui me fait avancer hors écran.",
+    hob1_h:"¡Hala Madrid!", hob1_p:"Fan du Real Madrid depuis des années — Los Blancos, La Décima, Bernabéu. Match, café, bonne compagnie.",
+    hob2_h:"Développement personnel", hob2_p:"Travail quotidien sur moi-même — habitudes, lecture, discipline. J'aime motiver les autres et moi-même.",
+    hob3_h:"Mindset écolo", hob3_p:"Recyclage, choix conscients, tri — les petites choses qui font la différence.",
+    hob4_h:"Gaming (RPG, stratégie)", hob4_p:"Les RPG et la stratégie aiguisent la pensée analytique et le travail d'équipe en ligne.",
+    hob5_h:"IA & FinTech", hob5_p:"Veille quotidienne sur les tendances IA/ML, FinTech et l'impact de la tech sur la finance.",
+    hob6_h:"Histoire", hob6_p:"Histoire polonaise et européenne — documentaires, livres, leçons du passé pour aujourd'hui.",
+    lvl_adv:"Avancé", lvl_int:"Intermédiaire", lvl_beg:"Débutant",
+    exp_kicker:"carrière", exp_h:"Expérience", exp_h2:"et formation",
+    now:"aujourd'hui", now2:"aujourd'hui", now3:"aujourd'hui",
+    exp1_role:"Senior Spécialiste · Hotline clients corporate",
+    exp1_b1:"Support des clients corporate sur la banque en ligne (Pekao24, PeoBiz 2.0, PeoPay)",
+    exp1_b2:"Service multilingue (PL, EN) — téléphone, e-mail, chat",
+    exp1_b3:"Helpdesk première ligne — diagnostic et résolution de problèmes techniques",
+    exp1_b4:"Onboarding et mentorat des nouveaux collaborateurs",
+    exp1_b5:"Conformité totale aux procédures de sécurité des données",
+    exp2_role:"Stagiaire IT",
+    exp2_b1:"Diagnostic et calibration du matériel informatique",
+    exp2_b2:"Montage de PC, remplacement de composants, installation de systèmes",
+    edu1:"Cybersécurité", edu1_where:"Wrocław — études, 3ème semestre", edu1_b:"Ethical hacking, sécurité réseau, protection des données, cryptographie, OSINT",
+    edu2:"Bases de données, Data Science et analyse business", edu2_where:"Wrocław — études, 2ème semestre", edu2_b:"SQL, Python, R, modèles analytiques, Power BI, statistiques, bases ML",
+    edu3:"Technicien Informatique", edu3_where:"Bochnia — formation professionnelle",
+    edu3_b1:"<b>EE.08</b> — montage et exploitation des systèmes informatiques, périphériques et réseaux",
+    edu3_b2:"<b>EE.09</b> — programmation, création et administration de sites web et bases de données",
+    edu3_b3:"Hardware, BIOS/UEFI, LAN/WLAN, installation Windows/Linux, PHP, MySQL, HTML/CSS/JS",
+    edu4:"Certificats Udemy", edu4_where:"7 formations en ligne terminées",
+    proj_kicker:"projets", proj_h:"Projets", proj_h2:"sélectionnés",
+    proj_p:"Un mix d'optimisations bancaires, de contenu IA, de scripts et d'un home lab. Certains ont marché, d'autres se sont plantés — j'ai appris de chacun.",
+    proj_ai_h:"AI YouTube Lab (RIP)",
+    proj_ai_p:"Tentative de chaîne avec contenu IA : scripts dans ChatGPT/Claude, voix dans ElevenLabs, vidéo dans Kling AI, montage dans Premiere. N'a pas explosé — mais la boîte à outils est restée.",
+    proj1_h:"Workflow Helpdesk Bancaire",
+    proj1_p:"Amélioration du support pour les clients corporate Pekao — réponse plus rapide, meilleure documentation, moins d'escalades.",
+    proj2_h:"Toolkit d'automatisation Python",
+    proj2_p:"Scripts pour le traitement des données, le reporting et l'automatisation — pandas, openpyxl, API REST, scraping.",
+    proj_pc_h:"Montages PC & Hardware",
+    proj_pc_p:"Montage de desktops, choix des composants, diagnostic, remplacement de hardware, install d'OS. Héritage de l'EE.08.",
+    proj5_h:"Home Cyber Lab",
+    proj5_p:"Lab VirtualBox/VMware : Kali, Fedora, Mint, Ubuntu Server, Windows Server — pentests, hardening, Cisco Packet Tracer, CCNA.",
+    proj7_h:"Linux au quotidien",
+    proj7_p:"Au quotidien sur Fedora, Ubuntu et Mint — bash, systemd, dotfiles, automatisation, pipelines terminal.",
+    proj3_h:"Apps Web Full-stack",
+    proj3_p:"Apps web en PHP + MySQL et JS vanilla — projets éducatifs et personnels, axés sur la sécurité.",
+    proj_unity_h:"Prototypes Unity",
+    proj_unity_p:"Premiers pas en gamedev — prototypes 2D/3D simples dans Unity, C#, expériences de mécanique.",
+    proj9_h:"Dashboards Excel / Power BI",
+    proj9_p:"Feuilles, formules, Power Query et visuels BI — rapports, KPI, prévisions. Excel intermédiaire, Power BI avancé.",
+    contact_kicker:"contact", contact_h:"Discutons",
+    contact_p:"Ouvert à des rôles en IT/sécurité/data, FinTech, freelance vidéo IA et collaborations intéressantes.",
+    chat_title:"Assistant IA de Paweł", chat_ph:"Pose-moi n'importe quelle question...", ai_sub:"● En ligne · entraîné sur le profil de Paweł",
+    f_name:"Nom complet", f_email:"E-mail", f_msg:"Message", f_send:"Envoyer le message →", f_or:"ou directement :", f_hint:"↑ le message arrive directement dans ma boîte mail",
+    ct_email_l:"E-mail · le meilleur canal", ct_gh_l:"GitHub · projets et code", ct_phone_l:"Téléphone · lun–ven, 9–17",
+    ct_loc_l:"Localisation", ct_loc_v:"Cracovie, PL · Remote OK",
+    ct_status_l:"Statut", ct_status_v:"Ouvert aux opportunités",
+    ct_lang_l:"Communication", ct_lang_v:"PL · EN · DE · FR · ES",
+    back_top:"↑ Retour en haut", rights:"Tous droits réservés"
+  },
+  de:{
+    nav_home:"Start", nav_about:"Über mich", nav_skills:"Skills", nav_exp:"Erfahrung", nav_projects:"Projekte", nav_contact:"Kontakt",
+    hero_tag:"Krakau · Remote · Offen, in IT zu wachsen",
+    hero_hi:"Hallo, ich bin", role:"IT · FinTech · KI",
+    hero_lede:"IT-Techniker (EE.08 + EE.09), Mitarbeiter der Bank Pekao S.A. an der Firmenkunden-Hotline, Student für Cybersicherheit und Datenanalytik. Begeistert von KI, Linux, Automatisierung und Content Creation.",
+    hero_cta1:"Lebenslauf laden", hero_cta2:"Projekte ansehen", contact_me:"Kontakt",
+    about_kicker:"über mich", about_h:"IT-Techniker,", about_h2:"Student, Creator",
+    about_h3:"IT-Techniker mit EE.08 + EE.09 und Kopf voller KI.",
+    about_p1:"Ich habe das IT-Technikum in Bochnia abgeschlossen — mit den vollen Qualifikationen EE.08 (Montage und Betrieb von Computersystemen, Peripheriegeräten und Netzwerken) und EE.09 (Programmierung, Erstellung und Administration von Websites und Datenbanken). Ich baue PCs, installiere OS, konfiguriere Netzwerke, schreibe in PHP/SQL/Python, baue Excel-Dashboards und schneide Videos in Premiere.",
+    about_p2:"Tagsüber arbeite ich bei Bank Pekao S.A. als Senior Spezialist Firmenkunden-Hotline — noch keine IT-Rolle, aber sie gibt mir solides Wissen über Banking-Systeme (Pekao24, PeoBiz 2.0, PeoPay), Sicherheitsverfahren und das Arbeiten im regulierten Umfeld. Ich komme aus Krakau und studiere berufsbegleitend an der WSKZ Wrocław — die Hochschule lässt mich in dem wachsen, was ich liebe: Cybersicherheit (3. Semester) und Datenbanken & Business Analytics (2. Semester).",
+    about_p3:"Ich bin Autodidakt — ich lerne schnell, einmal eingewiesen und ich laufe. Ich stecke tief in KI (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linux und Automatisierung. Ich wollte KI-Content auf YouTube machen — hat nicht eingeschlagen, aber Toolset, Workflow und Storytelling-Gespür sind geblieben. Ich besitze einen polnischen Behindertenausweis (Gruppe II) — kein Einfluss auf Büro-/IT-Arbeit. Ziel: IT im Banking, Security Ops oder FinTech.",
+    stat_years:"Jahre bei Pekao", stat_tech:"Technologien", stat_quals:"EE-Qualifikationen", stat_langs:"UI-Sprachen",
+    badge_title:"EE.08 · EE.09<br>Cybersecurity Student",
+    skills_kicker:"stack", skills_h:"Tech", skills_h2:"Stack",
+    skills_p:"Sprachen, Frameworks, KI-Tools, Systeme, Hardware und Design-Apps. Filter klickbar — wähle eine Kategorie.",
+    cat_all:"Alles", cat_ai:"KI-Tools", cat_lang:"Sprachen", cat_web:"Web", cat_db:"DB / Data", cat_sys:"Systeme / DevOps", cat_hw:"Hardware / Netzwerke", cat_sec:"Cybersicherheit", cat_design:"Design / Video", cat_game:"Game Dev", cat_mobile:"Mobile", cat_office:"Office",
+    lang_kicker:"fremdsprachen", lang_h:"Sprachen", lang_h2:"die ich spreche",
+    lang_p:"Täglicher Kundenservice in PL und EN, der Rest auf Grundniveau und im Lernen.",
+    lang_pl:"Polnisch", lang_en:"Englisch", lang_de:"Deutsch", lang_es:"Spanisch", lang_fr:"Französisch",
+    lang_native:"Muttersprache", lang_learn:"(auf dem Weg zum Zertifikat)", lang_learn2:"(im Lernen)", lang_start:"(Anfang)", lang_start2:"(Anfang)",
+    hob_kicker:"feierabend", hob_h:"Nach Feierabend,", hob_h2:"abseits der Tastatur",
+    hob_p:"Ein Mensch ist mehr als ein Tech-Stack. Das treibt mich abseits des Bildschirms an.",
+    hob1_h:"¡Hala Madrid!", hob1_p:"Real-Madrid-Fan seit Jahren — Los Blancos, La Décima, Bernabéu. Spiel, Kaffee, gute Gesellschaft.",
+    hob2_h:"Persönliche Entwicklung", hob2_p:"Tägliche Arbeit an mir — Gewohnheiten, Lesen, Disziplin. Ich motiviere mich und andere gerne.",
+    hob3_h:"Öko-Mindset", hob3_p:"Recycling, bewusste Entscheidungen, Mülltrennung — kleine Dinge, die einen Unterschied machen.",
+    hob4_h:"Gaming (RPG, Strategie)", hob4_p:"RPGs und Strategiespiele schärfen analytisches Denken und Online-Teamwork.",
+    hob5_h:"KI & FinTech", hob5_p:"Tägliches Tracking von KI/ML-Trends, FinTech und dem Einfluss neuer Tech auf Finance.",
+    hob6_h:"Geschichte", hob6_p:"Polnische und europäische Geschichte — Dokus, Bücher, Lektionen aus der Vergangenheit für heute.",
+    lvl_adv:"Fortgeschritten", lvl_int:"Mittelstufe", lvl_beg:"Anfänger",
+    exp_kicker:"karriere", exp_h:"Erfahrung", exp_h2:"& Ausbildung",
+    now:"heute", now2:"heute", now3:"heute",
+    exp1_role:"Senior Spezialist · Firmenkunden-Hotline",
+    exp1_b1:"Support für Firmenkunden im Online-Banking (Pekao24, PeoBiz 2.0, PeoPay)",
+    exp1_b2:"Mehrsprachiger Service (PL, EN) — Telefon, E-Mail, Chat",
+    exp1_b3:"First-Line-Helpdesk — Diagnose und Lösung technischer Probleme",
+    exp1_b4:"Onboarding und Mentoring neuer Mitarbeiter",
+    exp1_b5:"Volle Einhaltung der Datensicherheitsverfahren",
+    exp2_role:"IT-Praktikant",
+    exp2_b1:"Diagnose und Kalibrierung von Computer-Hardware",
+    exp2_b2:"PC-Bau, Tausch von Komponenten, OS-Installation",
+    edu1:"Cybersicherheit", edu1_where:"Wrocław — Studium, 3. Semester", edu1_b:"Ethical Hacking, Netzwerksicherheit, Datenschutz, Kryptografie, OSINT",
+    edu2:"Datenbanken, Data Science & Business Analytics", edu2_where:"Wrocław — Studium, 2. Semester", edu2_b:"SQL, Python, R, analytische Modelle, Power BI, Statistik, ML-Grundlagen",
+    edu3:"IT-Techniker", edu3_where:"Bochnia — Berufsausbildung",
+    edu3_b1:"<b>EE.08</b> — Montage und Betrieb von Computersystemen, Peripheriegeräten und Netzwerken",
+    edu3_b2:"<b>EE.09</b> — Programmierung, Erstellung und Administration von Websites und Datenbanken",
+    edu3_b3:"Hardware, BIOS/UEFI, LAN/WLAN, Windows/Linux-Installation, PHP, MySQL, HTML/CSS/JS",
+    edu4:"Udemy-Zertifikate", edu4_where:"7 abgeschlossene Online-Trainings",
+    proj_kicker:"projekte", proj_h:"Ausgewählte", proj_h2:"Projekte",
+    proj_p:"Mix aus Banking-Verbesserungen, KI-Content, Skripten und Home Lab. Manches lief, manches floppte — aus allem gelernt.",
+    proj_ai_h:"AI YouTube Lab (RIP)",
+    proj_ai_p:"Versuch eines KI-Content-Kanals: Skripte in ChatGPT/Claude, Stimmen in ElevenLabs, Video in Kling AI, Schnitt in Premiere. Hat nicht gezündet — aber der Werkzeugkasten ist geblieben.",
+    proj1_h:"Banking-Helpdesk-Workflow",
+    proj1_p:"Optimierung des Supports für Pekao-Firmenkunden — schnellere Reaktion, bessere Doku, weniger Eskalationen.",
+    proj2_h:"Python-Automation-Toolkit",
+    proj2_p:"Skripte für Datenverarbeitung, Reporting und Automatisierung — pandas, openpyxl, REST-APIs, Scraping.",
+    proj_pc_h:"PC-Builds & Hardware",
+    proj_pc_p:"Desktop-Bauen, Komponentenwahl, Diagnose, Hardware-Tausch, OS-Installs. Erbe von EE.08.",
+    proj5_h:"Home Cyber Lab",
+    proj5_p:"VirtualBox/VMware-Lab: Kali, Fedora, Mint, Ubuntu Server, Windows Server — Pentests, Hardening, Cisco Packet Tracer, CCNA.",
+    proj7_h:"Linux als Daily Driver",
+    proj7_p:"Täglich auf Fedora, Ubuntu und Mint — bash, systemd, dotfiles, Automatisierung, Terminal-Pipelines.",
+    proj3_h:"Full-Stack-Web-Apps",
+    proj3_p:"Web-Apps mit PHP + MySQL und vanilla JS — Bildungs- und Privatprojekte mit Sicherheitsfokus.",
+    proj_unity_h:"Unity-Game-Prototypen",
+    proj_unity_p:"Erste Schritte im Gamedev — einfache 2D/3D-Prototypen in Unity, C#, Mechanik-Experimente.",
+    proj9_h:"Excel / Power BI Dashboards",
+    proj9_p:"Sheets, Formeln, Power Query und BI-Visuals — Reports, KPIs, Prognosen. Excel Mittelstufe, Power BI fortgeschritten.",
+    contact_kicker:"kontakt", contact_h:"Reden wir",
+    contact_p:"Offen für Rollen in IT/Security/Data, FinTech, KI-Video-Freelance und spannende Kollabos.",
+    chat_title:"Pawełs KI-Assistent", chat_ph:"Frag mich alles...", ai_sub:"● Online · trainiert auf Pawełs Profil",
+    f_name:"Vor- und Nachname", f_email:"E-Mail", f_msg:"Nachricht", f_send:"Nachricht senden →", f_or:"oder direkt:", f_hint:"↑ Nachricht geht direkt in mein Postfach",
+    ct_email_l:"E-Mail · der beste Weg", ct_gh_l:"GitHub · Projekte und Code", ct_phone_l:"Telefon · Mo–Fr, 9–17",
+    ct_loc_l:"Standort", ct_loc_v:"Krakau, PL · Remote OK",
+    ct_status_l:"Status", ct_status_v:"Offen für neue Möglichkeiten",
+    ct_lang_l:"Kommunikation", ct_lang_v:"PL · EN · DE · FR · ES",
+    back_top:"↑ Nach oben", rights:"Alle Rechte vorbehalten"
+  },
+  es:{
+    nav_home:"Inicio", nav_about:"Sobre mí", nav_skills:"Skills", nav_exp:"Experiencia", nav_projects:"Proyectos", nav_contact:"Contacto",
+    hero_tag:"Cracovia · Remoto · Abierto a crecer en IT",
+    hero_hi:"Hola, soy", role:"IT · FinTech · IA",
+    hero_lede:"Técnico Informático (EE.08 + EE.09), Especialista en la línea de atención al cliente corporativo de Bank Pekao S.A., estudiante de ciberseguridad y analítica de datos. Apasionado de IA, Linux, automatización y creación de contenido.",
+    hero_cta1:"Descargar CV", hero_cta2:"Ver proyectos", contact_me:"Contacto",
+    about_kicker:"sobre mí", about_h:"Técnico IT,", about_h2:"estudiante, creador",
+    about_h3:"Técnico Informático con diplomas EE.08 + EE.09 y la cabeza llena de IA.",
+    about_p1:"Terminé el técnico informático en Bochnia — con las cualificaciones completas EE.08 (montaje y operación de sistemas informáticos, periféricos y redes) y EE.09 (programación, creación y administración de sitios web y bases de datos). Monto PCs, instalo OS, configuro redes, programo en PHP/SQL/Python, hago dashboards en Excel y edito vídeo en Premiere.",
+    about_p2:"De día trabajo en Bank Pekao S.A. como Senior Especialista en atención al cliente corporativo — todavía no es un puesto IT, pero me da un conocimiento sólido de los sistemas bancarios (Pekao24, PeoBiz 2.0, PeoPay), procedimientos de seguridad y trabajo en entornos regulados. Soy de Cracovia y estudio a tiempo parcial en WSKZ Wrocław — la universidad me deja crecer en lo que amo: Ciberseguridad (3.º semestre) y Bases de Datos + Analítica de Negocios (2.º semestre).",
+    about_p3:"Soy autodidacta — aprendo rápido, fórmame una vez y allá voy. Estoy a tope con IA (ChatGPT, Claude, Codex, Kling, ElevenLabs), Linux y automatización. Antes quise hacer contenido de IA en YouTube — no despegó, pero las herramientas, el flujo y el instinto narrativo se quedaron. Tengo certificado polaco de discapacidad (grupo II) — sin impacto en trabajo de oficina / IT. Objetivo: IT bancario, security ops o FinTech.",
+    stat_years:"Años en Pekao", stat_tech:"Tecnologías", stat_quals:"Cualificaciones EE", stat_langs:"Idiomas UI",
+    badge_title:"EE.08 · EE.09<br>Estudiante Ciberseguridad",
+    skills_kicker:"stack", skills_h:"Stack", skills_h2:"tecnológico",
+    skills_p:"Lenguajes, frameworks, herramientas IA, sistemas, hardware y apps de diseño. Filtro clicable — elige una categoría.",
+    cat_all:"Todo", cat_ai:"Herramientas IA", cat_lang:"Lenguajes", cat_web:"Web", cat_db:"BD / Data", cat_sys:"Sistemas / DevOps", cat_hw:"Hardware / Redes", cat_sec:"Ciberseguridad", cat_design:"Design / Video", cat_game:"Game Dev", cat_mobile:"Mobile", cat_office:"Office",
+    lang_kicker:"idiomas extranjeros", lang_h:"Idiomas", lang_h2:"que hablo",
+    lang_p:"Atención al cliente diaria en PL y EN, el resto a nivel básico y aprendiendo.",
+    lang_pl:"Polaco", lang_en:"Inglés", lang_de:"Alemán", lang_es:"Español", lang_fr:"Francés",
+    lang_native:"Nativo", lang_learn:"(camino al certificado)", lang_learn2:"(aprendiendo)", lang_start:"(empezando)", lang_start2:"(empezando)",
+    hob_kicker:"fuera del trabajo", hob_h:"Fuera de horas,", hob_h2:"lejos del teclado",
+    hob_p:"Una persona es más que un stack. Esto es lo que me mueve fuera de la pantalla.",
+    hob1_h:"¡Hala Madrid!", hob1_p:"Aficionado del Real Madrid desde hace años — Los Blancos, La Décima, Bernabéu. Partido, café, buena compañía.",
+    hob2_h:"Desarrollo personal", hob2_p:"Trabajo diario sobre mí — hábitos, lectura, disciplina. Me gusta motivarme a mí y a otros.",
+    hob3_h:"Mentalidad eco", hob3_p:"Reciclaje, decisiones conscientes, separación — pequeñas cosas que marcan la diferencia.",
+    hob4_h:"Gaming (RPG, estrategia)", hob4_p:"Los RPG y estrategia agudizan el pensamiento analítico y el trabajo en equipo online.",
+    hob5_h:"IA & FinTech", hob5_p:"Seguimiento diario de tendencias IA/ML, FinTech y el impacto de la tecnología en las finanzas.",
+    hob6_h:"Historia", hob6_p:"Historia polaca y europea — documentales, libros, lecciones del pasado para hoy.",
+    lvl_adv:"Avanzado", lvl_int:"Intermedio", lvl_beg:"Principiante",
+    exp_kicker:"carrera", exp_h:"Experiencia", exp_h2:"y formación",
+    now:"actualidad", now2:"actualidad", now3:"actualidad",
+    exp1_role:"Senior Especialista · Atención al cliente corporativo",
+    exp1_b1:"Soporte a clientes corporativos en banca online (Pekao24, PeoBiz 2.0, PeoPay)",
+    exp1_b2:"Servicio multilingüe (PL, EN) — teléfono, e-mail, chat",
+    exp1_b3:"Helpdesk de primera línea — diagnóstico y resolución de problemas técnicos",
+    exp1_b4:"Onboarding y mentoría de nuevos miembros del equipo",
+    exp1_b5:"Cumplimiento total de los procedimientos de seguridad de datos",
+    exp2_role:"Becario IT",
+    exp2_b1:"Diagnóstico y calibración de hardware",
+    exp2_b2:"Montaje de PCs, sustitución de componentes, instalación de sistemas",
+    edu1:"Ciberseguridad", edu1_where:"Wrocław — estudios, 3.º semestre", edu1_b:"Ethical hacking, seguridad de redes, protección de datos, criptografía, OSINT",
+    edu2:"Bases de datos, Data Science y analítica de negocios", edu2_where:"Wrocław — estudios, 2.º semestre", edu2_b:"SQL, Python, R, modelos analíticos, Power BI, estadística, ML básico",
+    edu3:"Técnico Informático", edu3_where:"Bochnia — formación profesional",
+    edu3_b1:"<b>EE.08</b> — montaje y operación de sistemas informáticos, periféricos y redes",
+    edu3_b2:"<b>EE.09</b> — programación, creación y administración de sitios web y bases de datos",
+    edu3_b3:"Hardware, BIOS/UEFI, LAN/WLAN, instalación Windows/Linux, PHP, MySQL, HTML/CSS/JS",
+    edu4:"Certificados Udemy", edu4_where:"7 formaciones online completadas",
+    proj_kicker:"proyectos", proj_h:"Proyectos", proj_h2:"destacados",
+    proj_p:"Mezcla de mejoras bancarias, contenido IA, scripts y home lab. Algunos salieron, otros se cayeron — de todos aprendí.",
+    proj_ai_h:"AI YouTube Lab (RIP)",
+    proj_ai_p:"Intento de canal con contenido IA: scripts en ChatGPT/Claude, voces en ElevenLabs, vídeo en Kling AI, montaje en Premiere. No explotó — pero la caja de herramientas se quedó.",
+    proj1_h:"Workflow de Helpdesk Bancario",
+    proj1_p:"Mejora del soporte para clientes corporativos de Pekao — respuesta más rápida, mejor documentación, menos escalados.",
+    proj2_h:"Toolkit de automatización Python",
+    proj2_p:"Scripts para procesamiento de datos, reportes y automatización — pandas, openpyxl, APIs REST, scraping.",
+    proj_pc_h:"Montajes PC & Hardware",
+    proj_pc_p:"Montaje de sobremesas, elección de componentes, diagnóstico, sustitución de hardware, instalación de OS. Herencia de EE.08.",
+    proj5_h:"Home Cyber Lab",
+    proj5_p:"Lab en VirtualBox/VMware: Kali, Fedora, Mint, Ubuntu Server, Windows Server — pentests, hardening, Cisco Packet Tracer, CCNA.",
+    proj7_h:"Linux a diario",
+    proj7_p:"Diariamente en Fedora, Ubuntu y Mint — bash, systemd, dotfiles, automatización, pipelines de terminal.",
+    proj3_h:"Apps Web Full-stack",
+    proj3_p:"Apps web con PHP + MySQL y JS vanilla — proyectos educativos y personales con foco en seguridad.",
+    proj_unity_h:"Prototipos Unity",
+    proj_unity_p:"Primeros pasos en gamedev — prototipos 2D/3D simples en Unity, C#, experimentos de mecánica.",
+    proj9_h:"Dashboards Excel / Power BI",
+    proj9_p:"Hojas, fórmulas, Power Query y visuales BI — informes, KPIs, previsiones. Excel intermedio, Power BI avanzado.",
+    contact_kicker:"contacto", contact_h:"Hablemos",
+    contact_p:"Abierto a roles en IT/seguridad/data, FinTech, freelance vídeo IA y colaboraciones interesantes.",
+    chat_title:"Asistente IA de Paweł", chat_ph:"Pregúntame lo que sea...", ai_sub:"● Online · entrenado en el perfil de Paweł",
+    f_name:"Nombre completo", f_email:"E-mail", f_msg:"Mensaje", f_send:"Enviar mensaje →", f_or:"o directamente:", f_hint:"↑ el mensaje llega directo a mi bandeja",
+    ct_email_l:"E-mail · la mejor vía", ct_gh_l:"GitHub · proyectos y código", ct_phone_l:"Teléfono · lun–vie, 9–17",
+    ct_loc_l:"Ubicación", ct_loc_v:"Cracovia, PL · Remote OK",
+    ct_status_l:"Estado", ct_status_v:"Abierto a oportunidades",
+    ct_lang_l:"Comunicación", ct_lang_v:"PL · EN · DE · FR · ES",
+    back_top:"↑ Volver arriba", rights:"Todos los derechos reservados"
+  }
+};
+
+/* ---------- CONTACT FORM (Web3Forms - sends mail directly, no Gmail popup) ---------- */
+const FORM_TXT = {
+  pl:{sending:"Wysyłanie...", ok:"✓ Wiadomość wysłana — odpowiem najszybciej jak się da!", err:"Coś poszło nie tak — spróbuj jeszcze raz", setup:"⚠️ Formularz wymaga 2-minutowej konfiguracji (instrukcja w kodzie HTML)"},
+  en:{sending:"Sending...",   ok:"✓ Message sent — I'll get back to you soon!",         err:"Something went wrong — please try again",  setup:"⚠️ Form needs a 2-minute setup (instructions in the HTML)"},
+  fr:{sending:"Envoi...",     ok:"✓ Message envoyé — je reviens vers toi bientôt !",   err:"Quelque chose s'est mal passé — réessaie",   setup:"⚠️ Le formulaire nécessite une config de 2 min (voir HTML)"},
+  de:{sending:"Senden...",    ok:"✓ Nachricht gesendet — ich melde mich bald!",         err:"Etwas ist schiefgelaufen — versuch's nochmal", setup:"⚠️ Formular braucht 2 Min Setup (siehe HTML)"},
+  es:{sending:"Enviando...",  ok:"✓ Mensaje enviado — ¡te respondo pronto!",            err:"Algo salió mal — inténtalo de nuevo",        setup:"⚠️ El formulario necesita 2 min de configuración (ver HTML)"}
+};
+function showToast(text, isError){
+  const t = document.createElement('div');
+  const bg = isError
+    ? 'linear-gradient(135deg,#c8262d,#a01e23)'
+    : 'linear-gradient(135deg,var(--violet-2),var(--violet))';
+  t.style.cssText = `position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:${bg};color:#fff;padding:14px 22px;border-radius:999px;z-index:1000;font-family:Inter;font-weight:600;font-size:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);animation:toastIn .3s ease;max-width:90vw;text-align:center`;
+  t.textContent = text; document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 3500);
+}
+async function sendForm(form){
+  const btn = form.querySelector('.submit');
+  const t = FORM_TXT[currentLang]||FORM_TXT.pl;
+  const dict = I18N[currentLang]||I18N.pl;
+  const originalText = dict.f_send;
+  const accessKey = form.querySelector('[name=access_key]').value;
+  // Detect placeholder key (form not configured yet)
+  if(!accessKey || accessKey === 'WSTAW_TUTAJ_SWOJ_KLUCZ' || accessKey.length < 30){
+    showToast(t.setup, true);
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = t.sending;
+  const data = new FormData(form);
+  try{
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:data
+    });
+    const json = await res.json();
+    if(res.ok && json.success){
+      showToast(t.ok);
+      form.reset();
+      btn.textContent = '✓';
+    } else {
+      throw new Error(json.message || 'submission failed');
+    }
+  } catch(e){
+    showToast(t.err + ' (' + e.message + ')', true);
+    btn.textContent = '✗';
+  }
+  setTimeout(()=>{ btn.disabled=false; btn.textContent = originalText; }, 2500);
+}
+
+/* ---------- TRY MULTIPLE PHOTO PATHS ---------- */
+function loadPhoto(img){
+  const list = (img.dataset.srcs||'').split('|').filter(Boolean);
+  let i=0;
+  function tryNext(){
+    if(i>=list.length){ img.style.display='none'; return; }
+    img.onload = ()=>{
+      const ini = img.parentElement.querySelector('.initials, span');
+      if(ini) ini.style.display='none';
+    };
+    img.onerror = ()=>{ i++; tryNext(); };
+    img.src = list[i] + '?v=' + Date.now();
+  }
+  tryNext();
+}
+document.querySelectorAll('img.pj-photo').forEach(loadPhoto);
+
+/* crest loader — hides the inline SVG fallback when a real file is found */
+function loadCrest(img){
+  const list = (img.dataset.srcs||'').split('|').filter(Boolean);
+  let i=0;
+  img.style.display='none';
+  function tryNext(){
+    if(i>=list.length) return;
+    const test = new Image();
+    test.onload = ()=>{
+      img.src = test.src;
+      img.style.display='block';
+      const svg = img.parentElement.querySelector('svg.crest-default');
+      if(svg) svg.style.display='none';
+    };
+    test.onerror = ()=>{ i++; tryNext(); };
+    test.src = list[i] + '?v=' + Date.now();
+  }
+  tryNext();
+}
+document.querySelectorAll('img.pj-crest').forEach(loadCrest);
+
+/* ---------- TYPED ROLE LINE ---------- */
+const ROLE_PHRASES = {
+  pl:["IT Specialist · FinTech · AI","Technik Informatyk EE.08 + EE.09","Linux Admin · Cybersecurity Student","AI Content Creator · YouTube veteran"],
+  en:["IT Specialist · FinTech · AI","IT Technician EE.08 + EE.09","Linux Admin · Cybersecurity Student","AI Content Creator · YouTube veteran"],
+  fr:["Spécialiste IT · FinTech · IA","Technicien Info EE.08 + EE.09","Linux Admin · Étudiant Cybersécurité","Créateur Contenu IA · Vétéran YouTube"],
+  de:["IT-Spezialist · FinTech · KI","IT-Techniker EE.08 + EE.09","Linux Admin · Cybersecurity Student","KI-Content-Creator · YouTube-Veteran"],
+  es:["Especialista IT · FinTech · IA","Técnico Informático EE.08 + EE.09","Linux Admin · Estudiante Ciberseguridad","Creador Contenido IA · Veterano YouTube"]
+};
+let typedTimer=null;
+function typeLoop(lang){
+  clearTimeout(typedTimer);
+  const node = document.getElementById('typed');
+  const phrases = ROLE_PHRASES[lang]||ROLE_PHRASES.pl;
+  let pi=0, ci=0, deleting=false;
+  function step(){
+    const ph = phrases[pi];
+    if(!deleting){
+      ci++;
+      node.textContent = ph.slice(0,ci);
+      if(ci===ph.length){ deleting=true; typedTimer=setTimeout(step,1800); return; }
+      typedTimer=setTimeout(step,55);
+    } else {
+      ci--;
+      node.textContent = ph.slice(0,ci);
+      if(ci===0){ deleting=false; pi=(pi+1)%phrases.length; typedTimer=setTimeout(step,300); return; }
+      typedTimer=setTimeout(step,30);
+    }
+  }
+  step();
+}
+
+/* ---------- AI CHAT (mock with keywords) ---------- */
+const CHAT_BOT = {
+  pl:{
+    greet:["Cześć! Jestem AI-asystentem Pawła. 👋 Co chcesz wiedzieć?","Wpisz pytanie albo kliknij jeden z gotowych tematów ↓"],
+    suggest:["Twoje skille?","Doświadczenie w banku?","AI tools?","Hardware?","Studia?","Kontakt?"],
+    rules:[
+      {k:["skil","umie","techn","stack"],r:"Najmocniej: SQL, Linux (Fedora/Mint/Ubuntu), Windows Server, Bash/PowerShell, Docker, Git, Premiere Pro, Power BI, AI tools (ChatGPT, Claude, Codex, ElevenLabs, Kling). Średnio: Python, PHP, JavaScript, HTML/CSS, Excel, Photoshop. Początkowo: Java/C++/C#/Ruby/R, Unity, After Effects."},
+      {k:["bank","pekao","praca","work"],r:"Pracuję w Bank Pekao S.A. od grudnia 2023 jako Specjalista ds. obsługi klienta firmowego (infolinia). To nie jest jeszcze rola IT, ale ogarniam tam Pekao24, PeoBiz 2.0, PeoPay i procedury bezpieczeństwa."},
+      {k:["ai","gpt","claude","codex","eleven","kling","sztuczn"],r:"AI tools używam codziennie i zaawansowanie: ChatGPT/GPT-4, Claude + Claude Code, OpenAI Codex, ElevenLabs (głosy), Kling AI (wideo). Próbowałem nawet kanału AI na YT — nie wyszedł, ale wiedza została."},
+      {k:["hardware","komputer","pc","składa","sprz"],r:"Składam komputery, diagnozuję, wymieniam podzespoły, instaluję Windows i Linux. To wszystko z EE.08 — montaż i eksploatacja systemów komputerowych, urządzeń peryferyjnych i sieci."},
+      {k:["studia","uczel","wroc","cyber","data","baz"],r:"Studiuję we Wrocławiu dwa kierunki: cyberbezpieczeństwo (3. semestr) oraz bazy danych, data science i analitykę biznesową (2. semestr)."},
+      {k:["ee.08","ee08","ee.09","ee09","kwalifik"],r:"Mam pełne kwalifikacje technika informatyka: EE.08 (hardware, sieci, peryferia) + EE.09 (programowanie, www, bazy). Skończone w Bochni 2018-2022."},
+      {k:["linux","fedora","mint","ubuntu","bash"],r:"Linux to mój daily driver — używam Fedory, Linux Mint i Ubuntu (też Server). Bash, systemd, dotfiles, automatyzacja w terminalu — codzienność."},
+      {k:["youtub","kanał","content","film"],r:"Próbowałem zostać YouTuberem z AI-contentem (scenariusze GPT/Claude, głosy ElevenLabs, wideo Kling, montaż Premiere). Nie wyszło, ale toolset i warsztat zostały."},
+      {k:["unity","gra","game"],r:"Unity ogarniam jako początkujący — proste prototypy 2D/3D w C#, eksperymenty z mechaniką."},
+      {k:["kontakt","email","mail","tel","github"],r:"📧 paweljanko123@gmail.com · ☎ +48 797 380 903 · 🐙 github.com/Pawel123j — wal śmiało."},
+      {k:["cv","życiorys"],r:"CV możesz pobrać przyciskiem 'Pobierz CV' w sekcji powitalnej (pdf w paczce z portfolio)."},
+      {k:["cel","plan","gdzie","przyszł"],r:"Cel: dostać się do działu IT w bankowości, security ops albo do FinTechu. Aktualnie zbieram doświadczenie + studia + lab w domu."}
+    ],
+    fallback:"Hmm, nie do końca rozumiem 🤔. Spróbuj zapytać o skille, AI, hardware, bank, studia, EE.08/EE.09 albo kontakt."
+  },
+  en:{
+    greet:["Hi! I'm Paweł's AI assistant. 👋 What do you want to know?","Type a question or pick a topic below ↓"],
+    suggest:["Your skills?","Bank role?","AI tools?","Hardware?","Studies?","Contact?"],
+    rules:[
+      {k:["skill","stack","tech","know"],r:"Strongest: SQL, Linux (Fedora/Mint/Ubuntu), Windows Server, Bash/PowerShell, Docker, Git, Premiere Pro, Power BI, AI tools (ChatGPT, Claude, Codex, ElevenLabs, Kling). Intermediate: Python, PHP, JavaScript, HTML/CSS, Excel, Photoshop. Beginner: Java/C++/C#/Ruby/R, Unity, After Effects."},
+      {k:["bank","pekao","work","job"],r:"I work at Bank Pekao S.A. since Dec 2023 as a Corporate Customer Hotline Specialist. Not IT yet, but I work daily with Pekao24, PeoBiz 2.0, PeoPay and bank security procedures."},
+      {k:["ai","gpt","claude","codex","eleven","kling"],r:"AI tools daily and advanced: ChatGPT/GPT-4, Claude + Claude Code, OpenAI Codex, ElevenLabs (voices), Kling AI (video). I even tried an AI YouTube channel — it didn't work out, but the skills stayed."},
+      {k:["hardware","pc","build","computer"],r:"I build PCs, run diagnostics, swap parts, install Windows and Linux. Comes from my EE.08 qualification — assembly and operation of computer systems, peripherals and networks."},
+      {k:["stud","univers","wroc","cyber","data","datab"],r:"I study at Wrocław — two programs: Cybersecurity (3rd semester) and Databases, Data Science & Business Analytics (2nd semester)."},
+      {k:["ee.08","ee08","ee.09","ee09","qualif"],r:"I hold both Polish IT-technician qualifications: EE.08 (hardware, networks, peripherals) + EE.09 (programming, web, databases). Bochnia 2018-2022."},
+      {k:["linux","fedora","mint","ubuntu","bash"],r:"Linux is my daily driver — Fedora, Linux Mint and Ubuntu (incl. Server). Bash, systemd, dotfiles, terminal automation — daily."},
+      {k:["youtub","channel","content"],r:"I tried being a YouTuber with AI content (scripts in GPT/Claude, voices in ElevenLabs, video in Kling, edits in Premiere). Didn't pop, but the toolset and craft stayed."},
+      {k:["unity","game"],r:"Unity I do as a beginner — simple 2D/3D prototypes in C#, mechanic experiments."},
+      {k:["contact","email","mail","tel","phone","github"],r:"📧 paweljanko123@gmail.com · ☎ +48 797 380 903 · 🐙 github.com/Pawel123j — feel free."},
+      {k:["cv","resume"],r:"You can grab the CV via the 'Download CV' button in the hero section (pdf next to this portfolio)."},
+      {k:["goal","plan","future"],r:"Goal: land in IT inside banking, security ops or FinTech. Right now I'm stacking experience + university + home lab."}
+    ],
+    fallback:"Hmm, not sure I follow 🤔. Try asking about skills, AI, hardware, banking, studies, EE.08/EE.09 or contact."
+  },
+  fr:{
+    greet:["Salut ! Je suis l'assistant IA de Paweł. 👋 Que veux-tu savoir ?","Tape une question ou choisis un sujet ↓"],
+    suggest:["Tes skills ?","Rôle banque ?","Outils IA ?","Hardware ?","Études ?","Contact ?"],
+    rules:[
+      {k:["skill","stack","tech","sais","compé"],r:"Le plus fort : SQL, Linux (Fedora/Mint/Ubuntu), Windows Server, Bash/PowerShell, Docker, Git, Premiere Pro, Power BI, outils IA (ChatGPT, Claude, Codex, ElevenLabs, Kling). Intermédiaire : Python, PHP, JavaScript, HTML/CSS, Excel, Photoshop. Débutant : Java/C++/C#/Ruby/R, Unity, After Effects."},
+      {k:["bank","pekao","travail","boulot"],r:"Je bosse à Bank Pekao S.A. depuis déc 2023 comme Spécialiste hotline clients corporate. Pas encore IT, mais je touche tous les jours à Pekao24, PeoBiz 2.0, PeoPay et aux procédures de sécurité."},
+      {k:["ia","ai","gpt","claude","codex","eleven","kling"],r:"Outils IA quotidiennement et au niveau avancé : ChatGPT/GPT-4, Claude + Claude Code, OpenAI Codex, ElevenLabs (voix), Kling AI (vidéo). J'ai même tenté une chaîne YouTube IA — pas marché, mais les skills sont restés."},
+      {k:["hardware","pc","monta","ordin"],r:"Je monte des PC, je diagnostique, je remplace des pièces, j'installe Windows et Linux. Ça vient de l'EE.08 — montage et exploitation des systèmes informatiques, périphériques et réseaux."},
+      {k:["étud","univers","wroc","cyber","data","donn"],r:"J'étudie à Wrocław — deux cursus : Cybersécurité (3ème semestre) et Bases de données, Data Science & Analyse business (2ème semestre)."},
+      {k:["ee.08","ee08","ee.09","ee09","qualif"],r:"Je tiens les deux qualifications de technicien informatique : EE.08 (hardware, réseaux, périphériques) + EE.09 (programmation, web, BDD). Bochnia 2018-2022."},
+      {k:["linux","fedora","mint","ubuntu","bash"],r:"Linux est mon daily driver — Fedora, Mint et Ubuntu (Server inclus). Bash, systemd, dotfiles, automatisation terminal — au quotidien."},
+      {k:["youtub","chaîne","content","contenu"],r:"J'ai voulu faire YouTubeur avec du contenu IA (scripts GPT/Claude, voix ElevenLabs, vidéo Kling, montage Premiere). Pas pris, mais le toolkit est resté."},
+      {k:["unity","jeu"],r:"Unity en débutant — prototypes 2D/3D simples en C#, expériences de mécanique."},
+      {k:["contact","email","mail","tel","github"],r:"📧 paweljanko123@gmail.com · ☎ +48 797 380 903 · 🐙 github.com/Pawel123j — n'hésite pas."},
+      {k:["cv"],r:"Le CV est dispo via le bouton 'Télécharger le CV' dans le hero (pdf à côté de ce portfolio)."},
+      {k:["objectif","but","plan","futur"],r:"Objectif : entrer en IT bancaire, security ops ou FinTech. Pour l'instant je cumule expérience + études + home lab."}
+    ],
+    fallback:"Hmm, je ne suis pas sûr 🤔. Essaie : skills, IA, hardware, banque, études, EE.08/EE.09 ou contact."
+  },
+  de:{
+    greet:["Hallo! Ich bin Pawełs KI-Assistent. 👋 Was möchtest du wissen?","Tipp eine Frage oder wähl ein Thema ↓"],
+    suggest:["Deine Skills?","Bank-Rolle?","KI-Tools?","Hardware?","Studium?","Kontakt?"],
+    rules:[
+      {k:["skill","stack","tech","kann"],r:"Am stärksten: SQL, Linux (Fedora/Mint/Ubuntu), Windows Server, Bash/PowerShell, Docker, Git, Premiere Pro, Power BI, KI-Tools (ChatGPT, Claude, Codex, ElevenLabs, Kling). Mittel: Python, PHP, JavaScript, HTML/CSS, Excel, Photoshop. Anfänger: Java/C++/C#/Ruby/R, Unity, After Effects."},
+      {k:["bank","pekao","arbeit","job"],r:"Ich arbeite bei Bank Pekao S.A. seit Dez 2023 als Spezialist Firmenkunden-Hotline. Noch keine IT-Rolle, aber ich arbeite täglich mit Pekao24, PeoBiz 2.0, PeoPay und Sicherheitsverfahren."},
+      {k:["ki","ai","gpt","claude","codex","eleven","kling"],r:"KI-Tools täglich und auf hohem Niveau: ChatGPT/GPT-4, Claude + Claude Code, OpenAI Codex, ElevenLabs (Stimmen), Kling AI (Video). Ich habe sogar einen KI-YouTube-Kanal versucht — hat nicht geklappt, aber die Skills sind geblieben."},
+      {k:["hardware","pc","baue","comput"],r:"Ich baue PCs, diagnostiziere, tausche Teile, installiere Windows und Linux. Kommt aus EE.08 — Montage und Betrieb von Computersystemen, Peripheriegeräten und Netzwerken."},
+      {k:["studi","univers","wroc","cyber","data"],r:"Ich studiere in Wrocław — zwei Studiengänge: Cybersicherheit (3. Semester) und Datenbanken, Data Science & Business Analytics (2. Semester)."},
+      {k:["ee.08","ee08","ee.09","ee09","qualif"],r:"Ich habe beide IT-Techniker-Qualifikationen: EE.08 (Hardware, Netzwerke, Peripherie) + EE.09 (Programmierung, Web, Datenbanken). Bochnia 2018-2022."},
+      {k:["linux","fedora","mint","ubuntu","bash"],r:"Linux ist mein Daily Driver — Fedora, Mint und Ubuntu (inkl. Server). Bash, systemd, dotfiles, Terminal-Automatisierung — täglich."},
+      {k:["youtub","kanal","content"],r:"Ich wollte YouTuber mit KI-Content werden (Skripte GPT/Claude, Stimmen ElevenLabs, Video Kling, Schnitt Premiere). Hat nicht eingeschlagen, aber das Toolset ist geblieben."},
+      {k:["unity","spiel","game"],r:"Unity als Anfänger — einfache 2D/3D-Prototypen in C#, Mechanik-Experimente."},
+      {k:["kontakt","email","mail","tel","github"],r:"📧 paweljanko123@gmail.com · ☎ +48 797 380 903 · 🐙 github.com/Pawel123j — gerne."},
+      {k:["cv","lebenslauf"],r:"CV gibt's per Button 'Lebenslauf laden' im Hero (PDF neben diesem Portfolio)."},
+      {k:["ziel","plan","zukun"],r:"Ziel: in IT im Banking, Security Ops oder FinTech einsteigen. Jetzt sammle ich Erfahrung + Studium + Home Lab."}
+    ],
+    fallback:"Hmm, nicht ganz klar 🤔. Frag z.B. nach Skills, KI, Hardware, Bank, Studium, EE.08/EE.09 oder Kontakt."
+  },
+  es:{
+    greet:["¡Hola! Soy el asistente IA de Paweł. 👋 ¿Qué quieres saber?","Escribe una pregunta o elige un tema ↓"],
+    suggest:["¿Tus skills?","¿Rol banco?","¿Herramientas IA?","¿Hardware?","¿Estudios?","¿Contacto?"],
+    rules:[
+      {k:["skill","stack","tech","sé","sab"],r:"Lo más fuerte: SQL, Linux (Fedora/Mint/Ubuntu), Windows Server, Bash/PowerShell, Docker, Git, Premiere Pro, Power BI, herramientas IA (ChatGPT, Claude, Codex, ElevenLabs, Kling). Intermedio: Python, PHP, JavaScript, HTML/CSS, Excel, Photoshop. Principiante: Java/C++/C#/Ruby/R, Unity, After Effects."},
+      {k:["banco","bank","pekao","trabaj"],r:"Trabajo en Bank Pekao S.A. desde dic 2023 como Especialista en atención al cliente corporativo. Todavía no es IT, pero toco a diario Pekao24, PeoBiz 2.0, PeoPay y procedimientos de seguridad."},
+      {k:["ia","ai","gpt","claude","codex","eleven","kling"],r:"Herramientas IA a diario y a nivel avanzado: ChatGPT/GPT-4, Claude + Claude Code, OpenAI Codex, ElevenLabs (voces), Kling AI (vídeo). Incluso intenté un canal de YouTube IA — no salió, pero las skills se quedaron."},
+      {k:["hardware","pc","monta","comput"],r:"Monto PCs, diagnóstico, sustituyo piezas, instalo Windows y Linux. Viene de EE.08 — montaje y operación de sistemas informáticos, periféricos y redes."},
+      {k:["estud","univers","wroc","ciber","data","dato"],r:"Estudio en Wrocław — dos carreras: Ciberseguridad (3.º semestre) y Bases de datos, Data Science & Analítica de Negocios (2.º semestre)."},
+      {k:["ee.08","ee08","ee.09","ee09","cualif"],r:"Tengo las dos cualificaciones de técnico informático: EE.08 (hardware, redes, periféricos) + EE.09 (programación, web, BBDD). Bochnia 2018-2022."},
+      {k:["linux","fedora","mint","ubuntu","bash"],r:"Linux es mi daily driver — Fedora, Mint y Ubuntu (Server incluido). Bash, systemd, dotfiles, automatización de terminal — a diario."},
+      {k:["youtub","canal","content"],r:"Intenté ser YouTuber con contenido IA (scripts GPT/Claude, voces ElevenLabs, vídeo Kling, montaje Premiere). No despegó, pero el toolset se quedó."},
+      {k:["unity","juego"],r:"Unity como principiante — prototipos 2D/3D simples en C#, experimentos de mecánica."},
+      {k:["contact","email","mail","tel","github"],r:"📧 paweljanko123@gmail.com · ☎ +48 797 380 903 · 🐙 github.com/Pawel123j — sin problema."},
+      {k:["cv","curric"],r:"El CV está en el botón 'Descargar CV' en el hero (pdf junto a este portfolio)."},
+      {k:["objetivo","meta","plan","futur"],r:"Objetivo: entrar en IT bancario, security ops o FinTech. Ahora sumo experiencia + estudios + home lab."}
+    ],
+    fallback:"Hmm, no estoy seguro 🤔. Prueba: skills, IA, hardware, banco, estudios, EE.08/EE.09 o contacto."
+  }
+};
+
+let chatLang='pl';
+function chatRender(){
+  const body = document.getElementById('chatBody');
+  body.innerHTML='';
+  const cfg = CHAT_BOT[chatLang];
+  for(const m of cfg.greet){
+    addMsg('bot', m, false);
+  }
+  // suggestions
+  const sg = document.getElementById('chatSuggest');
+  sg.innerHTML='';
+  cfg.suggest.forEach(s=>{
+    const b = document.createElement('button');
+    b.textContent = s;
+    b.addEventListener('click',()=>{ document.getElementById('chatInput').value=s; sendChat(); });
+    sg.appendChild(b);
+  });
+}
+function addMsg(role, text, scroll=true){
+  const body = document.getElementById('chatBody');
+  const el = document.createElement('div');
+  el.className = 'chat-msg '+role;
+  const cfg = CHAT_BOT[chatLang];
+  const who = role==='bot' ? 'paweł@ai' : 'you';
+  el.innerHTML = `<div class="who">${who}</div>${text}`;
+  body.appendChild(el);
+  if(scroll) body.scrollTop = body.scrollHeight;
+}
+function botReply(question){
+  const cfg = CHAT_BOT[chatLang];
+  const q = question.toLowerCase();
+  for(const rule of cfg.rules){
+    if(rule.k.some(kw=>q.includes(kw))) return rule.r;
+  }
+  return cfg.fallback;
+}
+function sendChat(){
+  const inp = document.getElementById('chatInput');
+  const q = (inp.value||'').trim();
+  if(!q) return;
+  addMsg('user', q.replace(/</g,'&lt;'));
+  inp.value='';
+  // typing indicator
+  const body = document.getElementById('chatBody');
+  const tp = document.createElement('div');
+  tp.className='chat-msg bot';
+  tp.innerHTML = `<div class="who">paweł@ai</div><span class="typing"><span></span><span></span><span></span></span>`;
+  body.appendChild(tp); body.scrollTop = body.scrollHeight;
+  setTimeout(()=>{
+    tp.remove();
+    addMsg('bot', botReply(q));
+  }, 600 + Math.random()*500);
+}
+document.getElementById('chatSend').addEventListener('click', sendChat);
+document.getElementById('chatInput').addEventListener('keydown', e=>{ if(e.key==='Enter') sendChat(); });
+
+/* ---------- RENDER SKILLS ---------- */
+const grid = document.getElementById('skillsGrid');
+function renderSkills(cat='all'){
+  grid.innerHTML='';
+  const items = SKILLS.filter(s=> cat==='all' || s.cat===cat);
+  for(const s of items){
+    const el = document.createElement('div');
+    el.className='skill';
+    el.dataset.cat=s.cat;
+    el.innerHTML = `
+      <div class="ico-wrap">${I[s.icon]||''}</div>
+      <div>
+        <div class="name">${s.n}</div>
+        <div class="lvl ${s.lvl}" data-lvlk="${s.lvlKey}">${s.lvlKey}</div>
+      </div>`;
+    el.addEventListener('mousemove',e=>{
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx',`${e.clientX-r.left}px`);
+      el.style.setProperty('--my',`${e.clientY-r.top}px`);
+    });
+    grid.appendChild(el);
+  }
+  applyLang(currentLang);
+}
+document.querySelectorAll('.skills-cats button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.skills-cats button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSkills(btn.dataset.cat);
+  });
+});
+
+/* ---------- MARQUEE ---------- */
+const marqIcons = ['python','sql','linux','docker','git','windows','cisco','php','js','html','css','premiere','vmware','bash','chatgpt','claudeai','elevenlabs','kling','ubuntu','unity','hardware'];
+const trk = document.getElementById('marqTrack');
+const labels = {python:"Python",sql:"SQL",linux:"Linux",docker:"Docker",git:"Git",windows:"Win Server",cisco:"Cisco",php:"PHP",js:"JavaScript",html:"HTML5",css:"CSS3",premiere:"Premiere",vmware:"VMware",bash:"Bash",chatgpt:"ChatGPT",claudeai:"Claude",elevenlabs:"ElevenLabs",kling:"Kling AI",ubuntu:"Ubuntu",unity:"Unity",hardware:"Hardware"};
+const buildMarq = ()=>{
+  let html='';
+  for(let i=0;i<2;i++){
+    for(const k of marqIcons){
+      html += `<div class="item">${I[k]}<span>${labels[k]}</span></div>`;
+    }
+  }
+  trk.innerHTML = html;
+};
+buildMarq();
+
+/* ---------- I18N ---------- */
+let currentLang='pl';
+function applyLang(lang){
+  currentLang = lang;
+  chatLang = lang;
+  const dict = I18N[lang] || I18N.pl;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-ph');
+    if(dict[k] !== undefined) el.placeholder = dict[k];
+  });
+  document.querySelectorAll('.skill .lvl').forEach(el=>{
+    const k = el.getAttribute('data-lvlk');
+    if(dict[k]) el.textContent = dict[k];
+  });
+  document.querySelectorAll('nav .lang button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang===lang);
+  });
+  typeLoop(lang);
+  chatRender();
+  try{ localStorage.setItem('pj_lang', lang); }catch(e){}
+}
+document.querySelectorAll('nav .lang button').forEach(btn=>{
+  btn.addEventListener('click',()=>applyLang(btn.dataset.lang));
+});
+const saved = (function(){try{return localStorage.getItem('pj_lang')}catch(e){return null}})();
+renderSkills('all');
+applyLang(saved || 'pl');
+</script>
+
+</body>
+</html>
