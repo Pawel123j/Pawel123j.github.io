@@ -1,31 +1,38 @@
-# Paweł Jankowicz · Portfolio
+# Paweł Jankowicz · Developer Portfolio
 
-Personal portfolio of **Paweł Jankowicz** — IT Technician (EE.08 + EE.09), FinTech enthusiast, Cybersecurity & Data Analytics student.
+Personal portfolio focused on **cybersecurity, data engineering and backend development**.
 
-🌐 **Live:** https://pawel123j.github.io
-📧 paweljanko123@gmail.com · ☎ +48 797 380 903
+🌐 **Website:** https://pawel123j.github.io  
+🧑‍💻 **GitHub:** https://github.com/Pawel123j  
+📄 **Proposed profile README:** [GITHUB_PROFILE_README.md](GITHUB_PROFILE_README.md)
 
-## What's inside
+## Six selected public projects
 
-- `index.html` — single-file portfolio (HTML + CSS + JS, no build step)
-- `pawel.png` — profile photo
-- `pawelai.png` — Paweł AI avatar (chat assistant persona)
-- `CV.pdf` — full CV in English
-- `realmadrid.png` *(optional)* — drop your own crest file here to override the stylized one
+| Project | Skills demonstrated | Evidence |
+| --- | --- | --- |
+| [SOC Home Lab](https://github.com/Pawel123j/SOC-Home-Lab-Wazuh-AD-) | Wazuh, Active Directory, SIEM detection and infrastructure | [Documentation](https://github.com/Pawel123j/SOC-Home-Lab-Wazuh-AD-/tree/main/docs) |
+| [ScamShield Senior](https://github.com/Pawel123j/scamshield) | Scam detection heuristics, secure UX and web tests | [Screenshots](https://github.com/Pawel123j/scamshield/tree/main/public/screenshots) |
+| [TransactPulse](https://github.com/Pawel123j/TransactPulse) | Kafka, Spark, Delta Lake, DuckDB and financial data | [Engineering case study](https://github.com/Pawel123j/TransactPulse/blob/main/docs/CASE_STUDY.md) |
+| [ShopFlow](https://github.com/Pawel123j/E-commerce-fullstack) | React, Express, Prisma, auth and a demo checkout | [Screenshots](https://github.com/Pawel123j/E-commerce-fullstack/tree/main/docs/screenshots) |
+| [BookingFlow Studio](https://github.com/Pawel123j/booking-browser) | Scheduling, time zones, client-side persistence | [Screenshots](https://github.com/Pawel123j/booking-browser/tree/main/docs/screenshots) |
+| [Elegant Snake](https://github.com/Pawel123j/SNAKE) | C#, Avalonia, state management, automated testing | [Gameplay screenshots](https://github.com/Pawel123j/SNAKE/tree/main/docs/screenshots) |
 
-## Features
+**Demo status:** These links point to code, documentation and evidence, not necessarily live deployments. Each repository documents its scope and limitations. Check its Actions tab for the latest CI status.
 
-- 5 languages (PL / EN / FR / DE / ES) with instant switcher
-- Live AI chat assistant ("Paweł AI") with keyword-based responses
-- Filterable skill grid with 40+ technologies
-- Real working QR code → GitHub
-- Tech marquee, hobbies & languages sections
-- Premium dark + neon design
+## This website repository
 
-## Tech
+- `index.html` — portfolio website (HTML, CSS, JavaScript).
+- `pawel.png`, `pawelai.png` — site images.
+- `CV.pdf` — résumé available on the website.
+- `GITHUB_PROFILE_README.md` — ready-to-copy profile introduction.
 
-Plain HTML5 + CSS3 + vanilla JavaScript. No frameworks, no dependencies (except Google Fonts and a free QR API). Runs anywhere.
+**To display the profile README on GitHub:** create a new **public** repository named exactly `Pawel123j` and copy the content of `GITHUB_PROFILE_README.md` to its root `README.md`. This website repository is separate and cannot directly display a GitHub profile README.
 
----
+## Publishing checklist
 
-Built with ❤ + ☕ + Linux.
+- [x] Curated six public projects and evidence links
+- [x] Added profile README draft
+- [ ] Create the dedicated profile repository and publish its README
+- [ ] Pin the six projects via GitHub profile settings
+- [ ] Confirm public live demos before claiming deployment
+- [ ] Repair remaining red CI checks before merging further PRs
