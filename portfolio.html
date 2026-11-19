@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://api.qrserver.com; connect-src https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paweł Jankowicz — IT · FinTech · AI · Cybersecurity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1657,7 +1658,17 @@ function addMsg(role, text, scroll=true){
   el.className = 'chat-msg '+role;
   const cfg = CHAT_BOT[chatLang];
   const who = role==='bot' ? 'paweł@ai' : 'you';
-  el.innerHTML = `<div class="who">${who}</div>${text}`;
+  // GH-01: tekst użytkownika trafia do DOM jako tekst (textContent), nigdy jako HTML.
+  // Odpowiedzi bota pochodzą ze stałych w tym pliku (zaufany HTML z formatowaniem).
+  const whoEl = document.createElement('div');
+  whoEl.className = 'who';
+  whoEl.textContent = who;
+  el.appendChild(whoEl);
+  if (role === 'user') {
+    el.appendChild(document.createTextNode(text));
+  } else {
+    el.insertAdjacentHTML('beforeend', text);
+  }
   body.appendChild(el);
   if(scroll) body.scrollTop = body.scrollHeight;
 }
@@ -1673,7 +1684,7 @@ function sendChat(){
   const inp = document.getElementById('chatInput');
   const q = (inp.value||'').trim();
   if(!q) return;
-  addMsg('user', q.replace(/</g,'&lt;'));
+  addMsg('user', q);
   inp.value='';
   // typing indicator
   const body = document.getElementById('chatBody');
